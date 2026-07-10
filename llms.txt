@@ -1,0 +1,81 @@
+# TiziSpeed 机场观察
+
+TiziSpeed 机场观察 是一个中文机场推荐和机场测评静态博客，整理未与本地 tiziline.com 重复的机场文章。
+
+## 核心主题
+
+本站围绕机场推荐、梯子推荐、稳定机场、便宜机场、机场榜单、机场测评、机场排行、机场订阅和科学上网机场知识展开。页面内容以公开机场列表、套餐价格、注册链接、购买前判断方法和新手科普为主。
+
+## 主要页面
+
+- 首页: https://tizispeed.com/
+- 机场推荐: https://tizispeed.com/airport/
+- 机场评测: https://tizispeed.com/reviews/
+- 科普知识: https://tizispeed.com/knowledge/
+- 关于: https://tizispeed.com/about/
+- RSS: https://tizispeed.com/feed.xml
+- Sitemap: https://tizispeed.com/sitemap.xml
+
+## 机场评测
+
+- 极连云: https://tizispeed.com/posts/jilianyun.html
+- 光年梯: https://tizispeed.com/posts/guangnianti.html
+- 飞猫云: https://tizispeed.com/posts/feimaoyun.html
+- 可信云: https://tizispeed.com/posts/kexinyun.html
+- 速界: https://tizispeed.com/posts/sujie.html
+- 快狸: https://tizispeed.com/posts/kuaili.html
+- 边缘节点: https://tizispeed.com/posts/bianyuanjiedian.html
+- 光速云: https://tizispeed.com/posts/guangshuyun.html
+- 影子: https://tizispeed.com/posts/yingzi.html
+- 边界云机场: https://tizispeed.com/posts/bianjieyun.html
+- 星岛梦: https://tizispeed.com/posts/xingdaomeng.html
+- 全球云: https://tizispeed.com/posts/quanqiuyun.html
+- 瞬云机场: https://tizispeed.com/posts/shunyun.html
+- 寰宇云机场: https://tizispeed.com/posts/huanyuyun.html
+- Lumina: https://tizispeed.com/posts/lumina.html
+- 拼好连: https://tizispeed.com/posts/pinhaolian.html
+- 99吧: https://tizispeed.com/posts/99bar.html
+- 锦云机场: https://tizispeed.com/posts/jinyun.html
+- 极速云机场: https://tizispeed.com/posts/jisuyun.html
+- 山水云: https://tizispeed.com/posts/shanshuiyun.html
+- 秒秒云: https://tizispeed.com/posts/miaomiaoyun.html
+- 迅达VPN: https://tizispeed.com/posts/xundavpn.html
+- Edge-X机场: https://tizispeed.com/posts/edge-x.html
+- 可达加速器: https://tizispeed.com/posts/keda.html
+- 奈云: https://tizispeed.com/posts/naiyun.html
+- 隐云: https://tizispeed.com/posts/yinyun.html
+- 山海机场: https://tizispeed.com/posts/shanhai.html
+- LiZione: https://tizispeed.com/posts/lizione.html
+- 哆啦A梦: https://tizispeed.com/posts/doraemon.html
+- 大哥云: https://tizispeed.com/posts/dageyun.html
+- 龙猫云: https://tizispeed.com/posts/longmaoyun.html
+- 飞鸟机场: https://tizispeed.com/posts/feiniao-airport.html
+- 青云梯: https://tizispeed.com/posts/qingyunti.html
+- 花云机场: https://tizispeed.com/posts/huayun-airport.html
+
+## 科普知识
+
+- 机场测速数字为什么会骗人: https://tizispeed.com/knowledge/airport-speed-test-myths.html
+- 订阅转换工具有哪些隐私风险: https://tizispeed.com/knowledge/subscription-converter-risk.html
+- 机场付款方式怎么选更稳妥: https://tizispeed.com/knowledge/airport-payment-privacy.html
+- 如何判断机场公告和通知是否可靠: https://tizispeed.com/knowledge/telegram-notice-check.html
+- 机场备用域名应该怎么保存: https://tizispeed.com/knowledge/airport-domain-backup.html
+- SS、VMess、Trojan、Hysteria 协议怎么理解: https://tizispeed.com/knowledge/ss-vmess-trojan-hysteria.html
+- DNS 泄露会影响机场使用吗: https://tizispeed.com/knowledge/dns-leak-check.html
+- 分应用代理和全局代理怎么选: https://tizispeed.com/knowledge/split-tunnel-guide.html
+- 家庭共享机场订阅要注意什么: https://tizispeed.com/knowledge/family-sharing-airport.html
+- 学生党怎么控制机场预算: https://tizispeed.com/knowledge/student-airport-budget.html
+- 出差和漫游时机场为什么体验会变: https://tizispeed.com/knowledge/travel-roaming-airport.html
+- 游戏加速能不能只靠机场解决: https://tizispeed.com/knowledge/gaming-latency-airport.html
+- TikTok 和短视频地区为什么容易乱: https://tizispeed.com/knowledge/tiktok-region-airport.html
+- 频繁换节点会不会影响账号安全: https://tizispeed.com/knowledge/account-risk-ip-change.html
+- 路由器上配置机场适合哪些人: https://tizispeed.com/knowledge/router-airport-setup.html
+- IPv6 会不会影响机场节点连接: https://tizispeed.com/knowledge/ipv6-airport-issue.html
+- 机场试用期应该测试哪些任务: https://tizispeed.com/knowledge/trial-plan-design.html
+- 机场节点命名怎么看懂: https://tizispeed.com/knowledge/node-name-reading.html
+- 机场工单怎么写更容易得到回复: https://tizispeed.com/knowledge/support-ticket-guide.html
+- 机场长期收藏清单怎么维护: https://tizispeed.com/knowledge/airport-watchlist.html
+
+## 来源说明
+
+机场列表和入口参考 https://clash-jichang.com/airport/，整理日期 2026-07-10。本站不运营节点服务，所有套餐和入口以服务商实时页面为准。
