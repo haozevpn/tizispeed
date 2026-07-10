@@ -370,7 +370,7 @@ function knowledgeThumbTitle(item) {
 }
 
 function thumb(title, index, tone = "red") {
-  const short = title.endsWith("机场") || title.includes("榜单")
+  const short = title.endsWith("机场") || title.includes("榜单") || title.includes("机场推荐")
     ? title.slice(0, 10)
     : title.replace(/机场|加速器|VPN|怎么样|推荐|知识|教程/g, "").slice(0, 8) || "机场推荐";
   return `<div class="thumb thumb-${tone}" aria-hidden="true">
@@ -499,7 +499,7 @@ function homePage() {
       excerpt: "机场推荐看起来很多，但真正值得长期使用的并不多。本站按公开机场列表整理低价、主流和年付套餐，方便先按预算筛选，再进入机场详情与测评文章。",
       tag: "机场榜单",
       meta: `${airports.length} 个机场`,
-      thumbTitle: "机场榜单"
+      thumbTitle: "最新机场推荐"
     }, 0, true, "red"),
     ...airports.slice(0, 8).map((item, index) => airportFeedRow(item, index, index < 2)),
     ...knowledgeTopics.slice(0, 4).map((item, index) => knowledgeFeedRow(item, index + 8)),
