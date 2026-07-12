@@ -4,7 +4,6 @@ const path = require("path");
 const SITE_URL = "https://tizispeed.com";
 const SITE_NAME = "TiziSpeed 机场观察";
 const TODAY = "2026-07-10";
-const SOURCE_URL = "https://clash-jichang.com/airport/";
 const SEO_KEYWORDS = "机场推荐,梯子推荐,稳定机场,机场榜单,机场测评,便宜机场,机场排行,科学上网机场,机场节点,机场订阅";
 
 const airportRows = [
@@ -51,7 +50,7 @@ const airports = airportRows.map(([name, slug, url, price, tag]) => ({
   price,
   tag,
   angle: `适合想对比 ${price} 这一档套餐，并希望从公开机场列表里快速筛选 ${tag} 选择的用户。`,
-  focus: `${name} 当前参考页整理到的最低公开订阅为 ${price}。选择它时不要只看价格，还要把节点地区、倍率规则、晚高峰表现和售后入口一起纳入判断。`,
+  focus: `${name} 当前整理到的最低公开订阅为 ${price}。选择它时不要只看价格，还要把节点地区、倍率规则、晚高峰表现和售后入口一起纳入判断。`,
   scenario: `更适合先用短周期验证常用场景的人，例如网页检索、社交软件、AI 工具、轻量视频、资料下载或备用网络访问。`,
   watch: `下单前重点确认 ${name} 的订阅入口、套餐周期、设备限制、退款说明和公告渠道，避免只凭单次测速决定长期续费。`,
   trial: `建议购买后连续三天测试香港、日本、新加坡、美国等常用节点，并记录晚间 20 点到 23 点的真实任务体验。`
@@ -450,7 +449,7 @@ function itemListSchema(name, description, pathName, items) {
 function layout({ title, description, pathName, content, extraHead = "", keywords = SEO_KEYWORDS }) {
   const prefix = prefixFor(pathName);
   const canonical = `${SITE_URL}${pathName}`;
-  const sourceFooter = pathName === "/about/" ? "" : `    <p>机场列表来源参考：<a href="${SOURCE_URL}" target="_blank" rel="nofollow noopener">Clash 机场推荐列表</a>。科普知识已和本地 tiziline.com/knowledge 做主题去重。</p>
+  const sourceFooter = pathName === "/about/" ? "" : `    <p>本站内容为原创整理，围绕机场套餐、使用场景、风险提醒和新手科普提供购买前参考，不代表任何服务商承诺。</p>
 `;
   const html = `<!doctype html>
 <html lang="zh-CN">
@@ -630,10 +629,10 @@ function airportTableRows(items) {
 }
 
 function priceTable(item) {
-  const rows = airportPlanRows[item.slug] || [["参考套餐", item.price, "以官网为准", "当前只整理到最低公开套餐，购买前请进入官网确认实时套餐。"]];
+  const rows = airportPlanRows[item.slug] || [["基础套餐", item.price, "以官网为准", "当前只整理到最低公开套餐，购买前请进入官网确认实时套餐。"]];
   return `      <section class="price-section">
         <h2>${item.name} 套餐价格表</h2>
-        <p>下面套餐信息参考 <a href="${SOURCE_URL}" target="_blank" rel="nofollow noopener">Clash 机场推荐列表</a> 的机场详情整理，并结合本站收录入口做阅读排版。机场套餐经常调整，实际价格、流量、倍率、设备数和优惠活动请以服务商官网实时页面为准。</p>
+        <p>下面套餐表由本站按公开套餐名称、价格、流量和适用场景重新整理，方便购买前快速比较。机场套餐经常调整，实际价格、流量、倍率、设备数和优惠活动请以服务商官网实时页面为准。</p>
         <div class="table-wrap price-wrap">
           <table class="price-table">
             <thead><tr><th>套餐</th><th>价格</th><th>流量/周期</th><th>说明</th></tr></thead>
@@ -858,7 +857,7 @@ function knowledgePage() {
   const content = shell("科普知识", { href: "/airport/", label: "机场推荐" }, knowledgeTopics.map((item, index) => knowledgeFeedRow(item, index, index < 2)).join(""));
   return layout({
     title: "机场科普知识：梯子推荐、稳定机场和订阅使用指南",
-    description: `${knowledgeTopics.length} 篇与 tiziline.com 去重后的机场科普知识文章，覆盖梯子推荐、稳定机场判断、测速、支付、协议、DNS、安全和使用风险。`,
+    description: `${knowledgeTopics.length} 篇原创机场科普知识文章，覆盖梯子推荐、稳定机场判断、测速、支付、协议、DNS、安全和使用风险。`,
     pathName: "/knowledge/",
     content
   });
@@ -1030,7 +1029,7 @@ ${knowledgeTopics.map((item) => `    <item>
 function llmsTxt() {
   return `# ${SITE_NAME}
 
-${SITE_NAME} 是一个中文机场推荐和机场测评静态博客，整理未与本地 tiziline.com 重复的机场文章。
+${SITE_NAME} 是一个中文机场推荐和机场测评静态博客，围绕机场榜单、机场测评和新手科普做原创整理。
 
 ## 核心主题
 
@@ -1054,9 +1053,9 @@ ${airports.map((item) => `- ${item.name}: ${SITE_URL}/posts/${item.slug}.html`).
 
 ${knowledgeTopics.map((item) => `- ${item.title}: ${SITE_URL}/knowledge/${item.slug}.html`).join("\n")}
 
-## 来源说明
+## 内容说明
 
-机场列表和入口参考 ${SOURCE_URL}，整理日期 ${TODAY}。本站不运营节点服务，所有套餐和入口以服务商实时页面为准。
+本站内容由 TiziSpeed 按机场套餐、适用场景、购买前检查项和新手使用问题原创整理，整理日期 ${TODAY}。本站不运营节点服务，所有套餐和入口以服务商实时页面为准。
 `;
 }
 

@@ -1,6 +1,6 @@
 # TiziSpeed 机场观察
 
-TiziSpeed 机场观察 是一个中文机场推荐和机场测评静态博客，整理未与本地 tiziline.com 重复的机场文章。
+TiziSpeed 机场观察 是一个中文机场推荐和机场测评静态博客，围绕机场榜单、机场测评和新手科普做原创整理。
 
 ## 核心主题
 
@@ -76,6 +76,6 @@ TiziSpeed 机场观察 是一个中文机场推荐和机场测评静态博客，
 - 机场工单怎么写更容易得到回复: https://tizispeed.com/knowledge/support-ticket-guide.html
 - 机场长期收藏清单怎么维护: https://tizispeed.com/knowledge/airport-watchlist.html
 
-## 来源说明
+## 内容说明
 
-机场列表和入口参考 https://clash-jichang.com/airport/，整理日期 2026-07-10。本站不运营节点服务，所有套餐和入口以服务商实时页面为准。
+本站内容由 TiziSpeed 按机场套餐、适用场景、购买前检查项和新手使用问题原创整理，整理日期 2026-07-10。本站不运营节点服务，所有套餐和入口以服务商实时页面为准。
