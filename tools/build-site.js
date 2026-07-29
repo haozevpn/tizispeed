@@ -7,9 +7,10 @@ const TODAY = "2026-07-10";
 const SEO_KEYWORDS = "机场推荐,梯子推荐,稳定机场,机场榜单,机场测评,便宜机场,机场排行,科学上网机场,机场节点,机场订阅";
 
 const airportRows = [
-  ["极连云", "jilianyun", "https://haozevpn.jlyvipaff.com/#/?code=KUKfOY13", "8元 60G/月", "入门首选"],
-  ["光年梯", "guangnianti", "https://gnt001.gntvipaff.cc/#/?code=j1ufpE44", "7.5元 50G/月", "低价备用"],
   ["飞猫云", "feimaoyun", "https://flycat.flycatvipaff.cc/#/?code=1arEKHqh", "¥84.00/年（学生版）", "年付低价"],
+  ["极连云", "jilianyun", "https://haozevpn.jlyvipaff.com/#/?code=KUKfOY13", "8元 60G/月", "入门首选"],
+  ["微风网络", "weifengwangluo", "https://vip01.breezenetaff.com/#/?code=JxFsshSn", "¥137.00/年 100GB/月", "IPLC专线"],
+  ["光年梯", "guangnianti", "https://gnt001.gntvipaff.cc/#/?code=j1ufpE44", "7.5元 50G/月", "低价备用"],
   ["可信云", "kexinyun", "https://varnexa.kexintttt.xyz/#/register?code=zcjBlIde", "8元 60G/月", "性价比"],
   ["速界", "sujie", "https://trevona.speed-world.cc/#/register?code=r7IOqoY7", "7.5元 50G/月", "新手友好"],
   ["快狸", "kuaili", "https://varnexa.kuailitttt.homes/#/register?code=G56QwHto", "10元 30GB/月", "轻量备用"],
@@ -73,6 +74,12 @@ const airportPlanRows = {
     ["学生版", "84元/年", "100GB/月", "不限设备，年付低价，适合预算有限用户。"],
     ["个人版", "20元/月", "200GB/月", "不限设备，适合个人日常主力。"],
     ["家庭版", "30元/月", "300GB/月", "不限设备，适合多设备或家庭共享。"]
+  ],
+  weifengwangluo: [
+    ["清风（Breeze）", "¥137.00/年", "100GB/月", "每月流量 100G，购买日算起自动重置；全 IPLC 专线，不限制设备同时接入，不限速。"],
+    ["乘风（Riding）", "¥27.00/月", "200GB/月", "每月流量 200G；全 IPLC 专线，不限制设备同时接入，不限速。"],
+    ["破风（Breaking）", "¥57.00/月", "500GB/月", "每月流量 500G；全 IPLC 专线，不限制设备同时接入，不限速。"],
+    ["御风（Mastery）", "¥127.00/月", "1.2TB/月", "每月流量 1200G；全 IPLC 专线，不限制设备同时接入，不限速。"]
   ],
   kexinyun: [
     ["入门版", "8元/月", "60GB/月", "不限设备，适合新手试用和轻量访问。"],

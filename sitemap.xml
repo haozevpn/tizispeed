@@ -37,19 +37,25 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://tizispeed.com/posts/feimaoyun.html</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://tizispeed.com/posts/jilianyun.html</loc>
     <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tizispeed.com/posts/guangnianti.html</loc>
+    <loc>https://tizispeed.com/posts/weifengwangluo.html</loc>
     <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tizispeed.com/posts/feimaoyun.html</loc>
+    <loc>https://tizispeed.com/posts/guangnianti.html</loc>
     <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
