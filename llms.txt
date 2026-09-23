@@ -4,7 +4,7 @@ TiziSpeed 机场观察 是一个中文机场推荐和机场测评静态博客，
 
 ## 核心主题
 
-本站围绕机场推荐、梯子推荐、稳定机场、便宜机场、机场榜单、机场测评、机场排行、机场订阅和科学上网机场知识展开。页面内容以公开机场列表、套餐价格、注册链接、购买前判断方法和新手科普为主。
+本站围绕机场推荐、梯子推荐、稳定机场、机场榜单、机场测评、便宜机场、机场排行、科学上网机场、机场节点、机场订阅、好用机场、低价机场、高速机场、IPLC机场、IEPL机场、BGP中转、专线机场、机场价格、机场套餐、机场注册链接、机场官网入口、机场测速、机场试用、机场客户端、Clash机场、Shadowrocket机场、Mihomo教程、机场备用、AI机场、流媒体解锁等 30 个核心搜索主题展开。页面内容以公开机场列表、套餐价格、注册链接、购买前判断方法和新手科普为主。
 
 ## 主要页面
 
@@ -56,6 +56,16 @@ TiziSpeed 机场观察 是一个中文机场推荐和机场测评静态博客，
 
 ## 科普知识
 
+- 机场推荐怎么选才靠谱: https://tizispeed.com/knowledge/airport-recommendation-guide.html
+- 梯子推荐和机场推荐有什么区别: https://tizispeed.com/knowledge/ladder-vs-airport-recommendation.html
+- 稳定机场应该看哪些指标: https://tizispeed.com/knowledge/stable-airport-checklist.html
+- 便宜机场怎么筛选不容易踩坑: https://tizispeed.com/knowledge/cheap-airport-filter.html
+- AI 工具访问怎么选择机场: https://tizispeed.com/knowledge/ai-service-guide.html
+- 主力机场和备用机场怎么搭配: https://tizispeed.com/knowledge/backup-airport.html
+- IEPL、IPLC、BGP 线路怎么选: https://tizispeed.com/knowledge/iepl-iplc-bgp.html
+- 手机端机场怎么配置更稳: https://tizispeed.com/knowledge/mobile-airport-guide.html
+- 电脑端机场客户端怎么选: https://tizispeed.com/knowledge/desktop-airport-guide.html
+- 流媒体解锁机场应该怎么测试: https://tizispeed.com/knowledge/streaming-unlock.html
 - 机场测速数字为什么会骗人: https://tizispeed.com/knowledge/airport-speed-test-myths.html
 - 订阅转换工具有哪些隐私风险: https://tizispeed.com/knowledge/subscription-converter-risk.html
 - 机场付款方式怎么选更稳妥: https://tizispeed.com/knowledge/airport-payment-privacy.html
@@ -79,4 +89,4 @@ TiziSpeed 机场观察 是一个中文机场推荐和机场测评静态博客，
 
 ## 内容说明
 
-本站内容由 TiziSpeed 按机场套餐、适用场景、购买前检查项和新手使用问题原创整理，整理日期 2026-07-10。本站不运营节点服务，所有套餐和入口以服务商实时页面为准。
+本站内容由 TiziSpeed 按机场套餐、适用场景、购买前检查项和新手使用问题原创整理，整理日期 2026-09-23。本站不运营节点服务，所有套餐和入口以服务商实时页面为准。
