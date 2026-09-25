@@ -3,9 +3,9 @@ const path = require("path");
 
 const SITE_URL = "https://tizispeed.com";
 const SITE_NAME = "TiziSpeed 机场观察";
-const TODAY = "2026-09-23";
+const TODAY = "2026-09-26";
 const INDEXNOW_KEY = "9f2c8a7d6e5b4c3a1d0f8e7a6b5c4d3e";
-const SEO_KEYWORDS = "机场推荐,梯子推荐,稳定机场,机场榜单,机场测评,便宜机场,机场排行,科学上网机场,机场节点,机场订阅,好用机场,低价机场,高速机场,IPLC机场,IEPL机场,BGP中转,专线机场,机场价格,机场套餐,机场注册链接,机场官网入口,机场测速,机场试用,机场客户端,Clash机场,Shadowrocket机场,Mihomo教程,机场备用,AI机场,流媒体解锁";
+const SEO_KEYWORDS = "机场推荐,梯子推荐,稳定机场,机场榜单,机场测评,便宜机场,机场排行,科学上网机场,机场节点,机场订阅,好用机场,低价机场,高速机场,IPLC机场,IEPL机场,BGP中转,专线机场,机场价格,机场套餐,机场注册链接,机场官网入口,机场测速,机场试用,机场客户端,Clash机场,Shadowrocket机场,Mihomo教程,机场备用,AI机场,流媒体解锁,香港节点,台湾节点,日本节点,新加坡节点,美国节点,机场速度,机场丢包,机场流量,机场重置日,机场运营,机场公告,机场TUN模式,机场规则模式,机场评测标准";
 
 const airportRows = [
   ["飞猫云", "feimaoyun", "https://flycat.flycatvipaff.cc/#/?code=1arEKHqh", "¥84.00/年（学生版）", "年付低价"],
@@ -302,6 +302,97 @@ const knowledgeTopics = [
   ["机场工单怎么写更容易得到回复", "support-ticket-guide", "售后沟通", "工单不是吐槽区，描述越清楚，服务商越容易判断是节点问题还是本地配置问题。", "提供时间、节点、客户端、网络环境和截图，比一句不能用更有效。"],
   ["机场长期收藏清单怎么维护", "airport-watchlist", "清单维护", "机场推荐列表会变化，价格、入口、套餐和可用性都可能更新，收藏清单也需要定期整理。", "把候选、主力、备用和淘汰分开记录，减少重复购买。"]
 ].map(([title, slug, tag, intro, takeaway]) => ({ title, slug, tag, intro, takeaway }));
+
+const knowledgeCategories = [
+  { slug: "recommendation", name: "机场推荐", short: "推荐", description: "机场推荐、预算筛选、套餐比较和购买决策。", keywords: "机场推荐,梯子推荐,便宜机场,稳定机场,机场套餐" },
+  { slug: "nodes", name: "线路与节点", short: "节点", description: "香港、台湾、日本、新加坡、美国等地区节点和线路知识。", keywords: "香港节点,台湾节点,日本节点,新加坡节点,美国节点,机场节点" },
+  { slug: "performance", name: "速度与稳定", short: "稳定", description: "测速、延迟、抖动、丢包、带宽和长期稳定性判断。", keywords: "机场速度,机场测速,机场延迟,机场丢包,稳定机场" },
+  { slug: "plans", name: "套餐与流量", short: "套餐", description: "流量倍率、重置日、一次性套餐、升级降级和设备用量。", keywords: "机场流量,机场套餐,机场价格,机场倍率,机场重置日" },
+  { slug: "operations", name: "运营与服务", short: "运营", description: "域名、公告、维护、客服和机场长期运营观察。", keywords: "机场运营,机场公告,机场域名,机场维护,机场客服" },
+  { slug: "clients", name: "客户端与配置", short: "客户端", description: "订阅更新、规则模式、TUN、系统代理和移动端排障。", keywords: "机场客户端,Clash机场,Mihomo教程,TUN模式,规则模式" },
+  { slug: "reviews", name: "评测方法", short: "评测", description: "机场榜单、测试周期、利益披露和个人评分体系。", keywords: "机场测评,机场榜单,机场推荐标准,机场测速,机场体验" }
+];
+
+const expandedTopicCandidates = [
+  ["2026年飞猫云机场套餐怎么选？学生版与个人版对比", "feimaoyun-plan-guide", "recommendation", "飞猫云机场公开套餐包含年付学生版与月付个人版等选择，价格周期和流量结构适合不同预算。", "先比较使用周期、月流量和长期付款风险，首次使用仍建议从可控预算开始验证。"],
+  ["极连云机场怎么样？8元套餐、IEPL线路与适合人群", "jilianyun-plan-line-guide", "recommendation", "极连云机场以 8 元 60GB/月的公开入门套餐和 IEPL 线路信息承接低预算机场推荐需求。", "适合先做低成本短测，重点验证晚高峰、常用地区和客户端订阅更新。"],
+  ["微风网络值得买吗？IPLC专线套餐与流量选择", "weifengwangluo-iplc-guide", "recommendation", "微风网络公开套餐从年付 100GB/月到更高月流量档位，页面信息强调全 IPLC 专线和不限设备。", "按真实流量选择档位，并在长期付款前验证常用节点、设备并发和晚高峰表现。"],
+  ["飞猫云和极连云哪个好？年付低价与月付入门对比", "feimaoyun-vs-jilianyun", "recommendation", "飞猫云与极连云分别侧重年付低价和月付入门，两者的付款周期、流量与试错成本不同。", "预算有限但尚未测试时优先控制付款周期，确认稳定后再比较年均成本。"],
+  ["极连云和微风网络哪个好？IEPL与IPLC套餐对比", "jilianyun-vs-weifengwangluo", "recommendation", "极连云和微风网络都提供专线相关套餐信息，但最低价格、月流量和套餐周期差异明显。", "先比较自己的预算与使用量，再用同一网络测试常用地区，线路标签不能替代真实结果。"],
+  ["飞猫云和微风网络哪个好？年付套餐与专线选择指南", "feimaoyun-vs-weifengwangluo", "recommendation", "飞猫云与微风网络都有年付入门选择，但公开流量、套餐定位和线路说明不同。", "年付前应分别测试核心任务，并把套餐规则、公告入口和备用方案纳入对比。"],
+  ["香港节点、台湾节点和日本节点应该怎么选？", "hk-tw-jp-node-choice", "nodes", "香港、台湾和日本节点都是机场用户常用的亚洲地区选择，但延迟、线路绕行、内容地区和晚高峰表现并不完全相同。", "先按常用任务和本地运营商筛选，再用晚高峰网页、视频和 AI 任务做连续测试。"],
+  ["新加坡机场节点适合哪些网络使用场景？", "singapore-node-guide", "nodes", "新加坡节点常被用于东南亚服务、海外办公和部分跨区域访问，但它不一定在所有网络环境下都比香港或日本更快。", "把新加坡节点作为特定场景的候选和备用，不能只按地理距离判断速度。"],
+  ["美国机场节点延迟高，为什么有时速度反而更快？", "us-node-speed", "nodes", "美国节点物理距离更远，延迟通常较高，但出口带宽、线路拥塞和目标服务所在地会改变实际体验。", "延迟和吞吐量要分开看，下载和视频任务不能只用 Ping 值判断。"],
+  ["欧洲机场节点速度慢的常见原因有哪些？", "europe-node-slow", "nodes", "欧洲节点速度慢可能来自跨洲链路、晚高峰拥塞、出口带宽、目标站点距离和本地 Wi-Fi，而不一定是机场本身故障。", "先区分延迟、丢包和带宽问题，再决定换地区还是换线路。"],
+  ["机场节点名称怎么看？常见缩写一次讲清楚", "node-name-abbreviation", "nodes", "机场节点名称通常包含地区、线路、倍率、协议或流媒体提示，读懂缩写可以减少盲目切换。", "节点名只能提供测试线索，最终仍要以实际任务和套餐规则为准。"],
+  ["机场速度受哪些因素影响？从本地网络到出口带宽", "airport-speed-factors", "performance", "机场速度是本地网络、客户端模式、节点负载、跨境线路、出口带宽和目标服务共同作用的结果。", "排查速度问题要从本地到节点再到目标站点逐层定位。"],
+  ["为什么测速很快，实际打开网页却很慢？", "fast-test-slow-web", "performance", "测速网站的结果只代表特定服务器和瞬间带宽，网页打开还会受到 DNS、连接数、脚本资源和目标站点响应影响。", "真实网页、视频和 AI 任务比单次测速峰值更能代表使用体验。"],
+  ["机场节点丢包严重怎么判断问题出在哪里？", "packet-loss-check", "performance", "丢包可能发生在家庭 Wi-Fi、本地运营商、机场入口、跨境链路或出口节点，不同位置的处理方法完全不同。", "用多个节点和多个网络环境交叉测试，才能避免把本地问题归咎于机场。"],
+  ["网络抖动是什么意思？对视频和游戏有什么影响？", "jitter-impact", "performance", "网络抖动是延迟在一段时间内反复变化，视频会表现为缓冲和清晰度下降，实时互动则更容易出现卡顿。", "对实时任务来说，稳定的延迟和低丢包通常比偶尔的峰值速度更重要。"],
+  ["如何记录机场一个月的稳定性表现？", "monthly-stability-log", "performance", "机场稳定性需要跨日期、时段、设备和任务观察，单次成功或失败都不能代表整月表现。", "建立固定记录表，按任务成功率、晚高峰、订阅更新和故障恢复时间复盘。"],
+  ["机场套餐中的重置日是什么意思？", "traffic-reset-day", "plans", "套餐重置日决定月度流量何时恢复，不同机场可能按自然月、购买日或固定日期计算。", "购买前确认重置规则、时区和未用流量处理方式，避免按自己的习惯误解套餐。"],
+  ["套餐升级后流量和到期时间如何计算？", "plan-upgrade-calculation", "plans", "套餐升级可能涉及补差价、立即生效、流量叠加和到期日变化，具体规则由服务商面板决定。", "操作前截图保存原套餐、剩余流量和到期时间，再确认升级页面的计算方式。"],
+  ["机场一次性套餐适合哪些用户？", "one-time-airport-plan", "plans", "一次性流量包没有固定月度重置，适合低频访问、备用和不希望每月续费的用户。", "比较单位流量价格、有效期和节点限制，不要只看一次性总价。"],
+  ["机场套餐倍率节点值得使用吗？", "airport-traffic-multiplier", "plans", "倍率节点会按实际消耗乘以规则扣除流量，可能换来更低价格、特定线路或更大节点范围。", "先计算真实可用流量，再用核心任务验证倍率节点是否值得。"],
+  ["每月100GB机场流量够不够用？", "100gb-airport-traffic", "plans", "100GB 是否够用取决于网页、AI、视频清晰度、下载量和同时在线设备，轻量用户和视频用户差异很大。", "按自己的七天流量记录估算，不要直接套用别人的用量结论。"],
+  ["一家机场能够长期运营需要具备哪些条件？", "long-term-airport-operation", "operations", "长期运营通常需要稳定的技术维护、清晰的公告、可持续的入口、合理的成本和及时的故障处理。", "判断机场能否长期使用，要同时看技术表现和服务透明度。"],
+  ["机场频繁更换域名意味着什么？", "airport-domain-change", "operations", "域名变化可能来自备案、风控、攻击、品牌调整或面板迁移，频繁变化会增加找回入口和更新订阅的成本。", "保存官网、公告、面板和备用入口，先确认来源再点击新域名。"],
+  ["机场突然涨价通常有哪些原因？", "airport-price-increase", "operations", "机场涨价可能与线路成本、带宽采购、汇率、支付渠道或套餐结构调整有关，但涨价也需要配套清晰说明。", "比较涨价后的实际流量、线路和售后变化，再决定续费而不是只看百分比。"],
+  ["机场维护一般需要多长时间？", "airport-maintenance-duration", "operations", "维护时长取决于节点规模、故障类型、入口迁移和服务商公告能力，短暂维护与长期失联需要区别处理。", "看公告更新时间、备用入口和故障恢复进度，不要仅凭一次维护判断跑路。"],
+  ["机场公告应该怎么看？哪些信息值得关注？", "airport-announcement-reading", "operations", "公告是判断机场服务透明度的重要入口，重点包括维护范围、影响时段、订阅变化、备用域名和恢复进度。", "把公告当作购买前检查项，长期没有更新的服务要降低预算。"],
+  ["机场订阅更新频率设置多少比较合适？", "subscription-refresh-frequency", "clients", "订阅更新过于频繁会增加请求和排查噪音，过于稀疏又可能错过节点调整和规则变化。", "日常按客户端默认或每天一次即可，遇到维护公告再手动更新并记录变化。"],
+  ["机场订阅出现重复节点应该如何处理？", "duplicate-airport-nodes", "clients", "重复节点可能来自多个订阅、旧配置残留、机场命名重复或客户端合并规则不同。", "先确认订阅来源，再清理旧配置和重名节点，不要盲目删除正在使用的策略。"],
+  ["客户端中的全局、规则和直连模式如何选择？", "global-rule-direct-mode", "clients", "全局、规则和直连模式决定哪些流量经过机场，适用场景、排查成本和隐私边界各不相同。", "日常优先规则模式，排查单个网站时临时切换全局，确认本地服务后再恢复。"],
+  ["TUN模式是什么？哪些情况下需要开启？", "tun-mode-airport-guide", "clients", "TUN 模式通过虚拟网卡接管更多系统流量，适合规则代理覆盖不足的应用，但权限和排查复杂度也更高。", "先使用普通系统代理验证订阅，只有明确需要接管非标准应用时再开启 TUN。"],
+  ["手机休眠后机场连接断开怎么解决？", "mobile-sleep-airport-fix", "clients", "手机休眠断连常与系统省电、后台限制、网络切换和客户端通知权限有关，不一定是机场节点故障。", "先允许客户端后台运行并关闭电池优化，再分别测试 Wi-Fi 和移动网络。"],
+  ["机场评测文章如何保持客观可信？", "objective-airport-review", "reviews", "机场评测需要公开测试时间、网络环境、套餐口径和利益关系，避免把一次体验写成永久承诺。", "把可验证数据、个人体验和推测判断分开呈现，读者才有复核空间。"],
+  ["为什么网上的机场测速结果不能完全照搬？", "airport-speed-result-limit", "reviews", "测速结果受地点、运营商、设备、节点负载和测试时间影响，别人的峰值不能直接代表你的长期体验。", "把公开测速当作候选线索，再用自己的真实任务复测。"],
+  ["机场推荐榜单应该建立哪些评价标准？", "airport-ranking-standard", "reviews", "机场榜单至少应同时考虑价格透明度、流量规则、常用地区、晚高峰表现、公告售后和风险提示。", "榜单应帮助缩小范围，而不是替用户做无法验证的绝对排名。"],
+  ["如何识别带有过度宣传的机场广告？", "airport-ad-overclaim", "reviews", "“永久稳定”“全节点满速”“绝不跑路”等绝对化词语无法替代套餐、测试和售后证据。", "优先相信可核验的价格、规则、公告和短周期体验。"],
+  ["如何建立自己的机场评测评分体系？", "personal-airport-score", "reviews", "个人评分应围绕自己的核心任务设置权重，把价格、速度、稳定、配置和售后放进同一张记录表。", "评分服务于自己的选择，不必追求一个适用于所有人的统一分数。"]
+].map(([title, slug, category, intro, takeaway]) => ({
+  title,
+  slug,
+  tag: knowledgeCategories.find((item) => item.slug === category).name,
+  category,
+  intro,
+  takeaway,
+  isExpanded: true
+}));
+
+const publishedNewSlugs = new Set([
+  "feimaoyun-plan-guide",
+  "jilianyun-plan-line-guide",
+  "weifengwangluo-iplc-guide",
+  "feimaoyun-vs-jilianyun",
+  "jilianyun-vs-weifengwangluo",
+  "feimaoyun-vs-weifengwangluo",
+  "hk-tw-jp-node-choice",
+  "airport-speed-factors",
+  "traffic-reset-day",
+  "long-term-airport-operation",
+  "tun-mode-airport-guide",
+  "objective-airport-review"
+]);
+
+const newKnowledgeTopics = expandedTopicCandidates.filter((item) => publishedNewSlugs.has(item.slug));
+
+knowledgeTopics.forEach((item) => {
+  const recommendationSlugs = new Set(["airport-recommendation-guide", "ladder-vs-airport-recommendation", "stable-airport-checklist", "cheap-airport-filter", "ai-service-guide", "backup-airport", "family-sharing-airport", "student-airport-budget", "travel-roaming-airport", "gaming-latency-airport", "tiktok-region-airport", "account-risk-ip-change", "airport-watchlist"]);
+  const nodeSlugs = new Set(["iepl-iplc-bgp", "node-name-reading", "ss-vmess-trojan-hysteria"]);
+  const performanceSlugs = new Set(["streaming-unlock", "airport-speed-test-myths", "peak-hour-test", "gaming-latency-airport", "dns-leak-check", "ipv6-airport-issue"]);
+  const planSlugs = new Set(["cheap-airport-cost", "traffic-rate-device", "trial-plan-design"]);
+  const operationsSlugs = new Set(["airport-payment-privacy", "telegram-notice-check", "airport-domain-backup", "support-ticket-guide", "airport-risk-signals"]);
+  const clientSlugs = new Set(["mobile-airport-guide", "desktop-airport-guide", "router-airport-setup", "split-tunnel-guide", "subscription-converter-risk", "client-subscription-guide"]);
+  item.category = recommendationSlugs.has(item.slug) ? "recommendation"
+    : nodeSlugs.has(item.slug) ? "nodes"
+      : performanceSlugs.has(item.slug) ? "performance"
+        : planSlugs.has(item.slug) ? "plans"
+          : operationsSlugs.has(item.slug) ? "operations"
+            : clientSlugs.has(item.slug) ? "clients"
+              : "reviews";
+});
+knowledgeTopics.push(...newKnowledgeTopics);
 
 const seoKnowledgeArticles = {
   "airport-recommendation-guide": {
@@ -639,6 +730,10 @@ function breadcrumbTrail(pathName, title) {
     trail.push({ name: "机场测评", item: `${SITE_URL}/reviews/` });
   } else if (pathName.startsWith("/knowledge/") && pathName !== "/knowledge/") {
     trail.push({ name: "科普知识", item: `${SITE_URL}/knowledge/` });
+    const category = knowledgeCategories.find((item) => pathName === `/knowledge/${item.slug}/` || knowledgeTopics.some((topic) => topic.slug === path.basename(pathName, ".html") && topic.category === item.slug));
+    if (category && pathName !== `/knowledge/${category.slug}/`) {
+      trail.push({ name: category.name, item: `${SITE_URL}/knowledge/${category.slug}/` });
+    }
   } else if (pathName === "/airport/") {
     trail.push({ name: "机场榜单", item: `${SITE_URL}/airport/` });
     return trail;
@@ -781,6 +876,24 @@ function knowledgeListSchema() {
   })}</script>`;
 }
 
+function topicListSchema(category, items) {
+  return `<script type="application/ld+json">${JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `${category.name}专题文章`,
+    description: category.description,
+    url: `${SITE_URL}/knowledge/${category.slug}/`,
+    itemListOrder: "https://schema.org/ItemListOrderAscending",
+    numberOfItems: items.length,
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.title,
+      url: `${SITE_URL}/knowledge/${item.slug}.html`
+    }))
+  })}</script>`;
+}
+
 function layout({ title, description, pathName, content, extraHead = "", keywords = SEO_KEYWORDS }) {
   const prefix = prefixFor(pathName);
   const canonical = `${SITE_URL}${pathName}`;
@@ -827,6 +940,10 @@ function layout({ title, description, pathName, content, extraHead = "", keyword
       <a href="/airport/">机场榜单</a>
       <a href="/reviews/">机场测评</a>
       <a href="/knowledge/">科普知识</a>
+      <details class="nav-directory">
+        <summary>专题目录</summary>
+        <div class="nav-menu">${knowledgeCategories.map((category) => `<a href="/knowledge/${category.slug}/">${category.name}</a>`).join("")}</div>
+      </details>
       <a href="/about/">关于</a>
     </nav>
   </header>
@@ -859,6 +976,199 @@ function knowledgeCard(item) {
     <h3>${item.title}</h3>
     <p>${item.intro}</p>
   </a>`;
+}
+
+function knowledgeCategoryLinks() {
+  return knowledgeCategories.map((category) => `<a href="/knowledge/${category.slug}/">${category.short}</a>`).join("");
+}
+
+function knowledgeCategoryNav() {
+  return `<div class="topic-directory">
+    <strong>专题目录</strong>
+    ${knowledgeCategories.map((category) => `<a href="/knowledge/${category.slug}/"><span>${category.name}</span><small>${knowledgeTopics.filter((item) => item.category === category.slug).length} 篇</small></a>`).join("")}
+  </div>`;
+}
+
+function airportLongtailLinks(item) {
+  const featured = ["feimaoyun", "jilianyun", "weifengwangluo"];
+  const pool = [...featured, "guangnianti", "kexinyun", "sujie", "lumina", "jinyun"];
+  const offset = item.slug.split("").reduce((sum, character) => sum + character.charCodeAt(0), 0) % (pool.length - 2);
+  const selectedSlugs = item.category === "recommendation" ? featured : pool.slice(offset, offset + 3);
+  const selected = selectedSlugs.map((slug) => airports.find((airport) => airport.slug === slug)).filter(Boolean);
+  return `<section>
+    <h2>本站机场推荐入口</h2>
+    <p>结合本文主题，可以继续查看下面的具体机场资料。详情页整理公开套餐、适合场景和下单检查项，不代表对第三方服务作永久稳定承诺。</p>
+    <ul class="article-list">${selected.map((airport) => `<li><a href="/posts/${airport.slug}.html">${airport.name}机场测评</a>：${airport.price}，定位为${airport.tag}，实时价格和可用性以官网为准。</li>`).join("")}</ul>
+  </section>`;
+}
+
+const expandedArticleDetails = {
+  "feimaoyun-plan-guide": [
+    ["三档套餐的核心差异", ["飞猫云学生版公开价格为 84 元/年、100GB/月，个人版为 20 元/月、200GB/月，家庭版为 30 元/月、300GB/月。表面差异是价格和流量，真正影响选择的是付款周期：学生版单月折算低，但首次就承担全年付款；月付版单价更高，却保留了随时复查和更换的空间。", "只查资料、使用文字 AI 和轻量社交时，100GB 通常更容易控制；经常看视频、下载资料或多设备使用时，200GB 和 300GB 更有余量。不要用套餐名称判断身份限制，设备数、续费价格和购买资格仍要在实时页面确认。"]],
+    ["学生版是否真的更划算", ["判断年付是否划算，不能只用 84 除以 12。还要把没有体验过线路的试错成本、节点变化、公告维护和退款限制计入。如果连续使用半年以上且每月用量稳定，年付的价格优势才更容易兑现。", "首次接触飞猫云时，可以先确认是否存在更短周期的测试方式，或者只在预算可承受损失的情况下选择学生版。已经有主力机场的用户，则可把低价年付用作备用，但要定期检查入口和订阅是否正常。"]],
+    ["飞猫云应该测试什么", ["测试应覆盖香港、日本、新加坡和美国等常用地区，并在晚间 20 点到 23 点实际打开网页、登录 AI、收发 Telegram、播放视频和更新订阅。测速峰值只记录一次没有意义，连续三天能完成核心任务更有参考价值。", "如果主要用手机，还要观察 Wi-Fi 与移动网络切换后是否断连；如果是家庭版，则要同时连接手机、电脑和平板，查看多设备使用时是否明显拥塞。测试记录符合需求后，再决定是否续费更长周期。"]],
+    ["适合与不适合的人", ["飞猫云的年付低价更适合预算明确、月流量需求不高、愿意承担长期付款风险的人。个人版和家庭版更适合希望月付复查、需要更高流量或多设备使用的人。", "如果你只偶尔使用，且无法确认未来一年是否持续需要，年付即使便宜也未必合算；如果工作任务对网络连续性要求很高，也不应只依赖一个机场，应另备入口与线路不同的服务。"]]
+  ],
+  "jilianyun-plan-line-guide": [
+    ["8 元套餐解决什么需求", ["极连云 Mini 套餐公开信息为 8 元/月、60GB/月，往上还有 12 元 120GB、20 元 240GB 和 30 元 400GB。四档流量按价格递增，适合先按近七天真实用量选择，而不是看到最低价就默认够用。", "60GB 更偏向网页、AI 文字交互、社交和临时备用。高清视频、云盘下载、系统更新或多设备共享很容易突破这个量级。首次购买选择 Mini 的价值主要是降低测试成本，而不是证明它一定适合长期主力。"]],
+    ["IEPL 和全节点 1 倍怎样理解", ["公开套餐说明强调 IEPL 专线和全节点 1 倍。1 倍意味着使用 1GB 通常按 1GB 扣除，相比高倍率节点更容易估算用量；IEPL 是线路标签，可能改善特定路径，但不能保证所有运营商、地区和时段表现完全一致。", "购买前仍要检查常用地区是否覆盖、节点是否有限制、UDP 和特定客户端是否支持。线路名称适合用来筛候选，最终判断必须落到自己的电信、联通或移动网络上。"]],
+    ["怎样完成低成本短测", ["先导入官方提供的订阅，确认规则模式下国内网站直连，再分别测试常用地区节点。白天和晚高峰使用同一组任务，记录首屏打开、视频缓冲、AI 验证、订阅更新和节点切换次数。", "如果 60GB 在测试期内足够，Mini 可以继续作为轻量主力或备用；如果视频和下载占比高，再升级 120GB 或 240GB 会比频繁购买流量包更清晰。升级前应核对补差价、流量重置和到期日规则。"]],
+    ["适合人群与风险边界", ["极连云更适合希望用月付控制预算、对专线标签有兴趣并愿意自己测试节点的新手。不限设备不等于多人无限使用，流量总额和同时连接的实际表现仍然是限制。", "任何低价月付都不应被理解成永久稳定承诺。公告、备用域名、工单和教程是否持续可用，决定了出现故障时能否恢复。核心工作场景仍建议准备独立备用机场。"]]
+  ],
+  "weifengwangluo-iplc-guide": [
+    ["微风网络套餐怎样分档", ["微风网络清风套餐公开价格为 137 元/年、100GB/月；乘风为 27 元/月、200GB；破风为 57 元/月、500GB；御风为 127 元/月、1.2TB。选择时应先按使用量排除明显过大的档位，再比较年付与月付的风险。", "100GB 年付适合流量稳定、预算有限且完成过测试的用户。200GB 更适合日常 AI、视频和多设备，500GB 与 1.2TB 则面向明显的大流量需求。大套餐只有在真实消耗接近时才有价值。"]],
+    ["全 IPLC 专线意味着什么", ["页面信息强调全 IPLC 专线、不限制设备同时接入和不限速。IPLC 是线路类型描述，通常用来表达更稳定的跨境路径，但实际体验仍会受到本地入口、节点负载、出口带宽和目标服务影响。", "不限速也不等于任何设备都能跑满本地宽带。千兆宽带、Wi-Fi 信号、客户端模式和测速目标都会限制结果。应把宣传字段转换成晚高峰成功率，而不是只比较理论上限。"]],
+    ["年付前必须完成的测试", ["清风套餐按年付款，试错成本高于月付。下单前应确认购买日重置规则、未用流量是否结转、常用客户端的一键导入方式，以及出现入口变化时从哪里获取公告。", "测试至少包括常用节点连续连接、YouTube 或流媒体播放、AI 账号登录、手机休眠恢复和电脑订阅更新。只有这些任务在自己的网络里稳定，才有理由用年付换取更低的月均成本。"]],
+    ["怎样判断是否值得买", ["如果每月用量接近 100GB、偏好长期低成本且已验证节点，清风具有明确定位；若暂时不了解线路表现，乘风月付能用更高月均价格换取更低决策风险。", "重度视频和多人共享应先记录一周流量，再考虑破风或御风。不要因为 1.2TB 数字大就自动升级，未使用的流量不会转化为更好的线路质量。"]]
+  ],
+  "feimaoyun-vs-jilianyun": [
+    ["先比较付款周期", ["飞猫云学生版是 84 元年付，折算月均约 7 元；极连云 Mini 是 8 元月付。两者表面月均价格接近，但付款风险完全不同：前者一次支付全年，后者可以每月根据体验决定是否继续。", "从未使用过两家服务时，月付更容易控制试错成本；已经连续测试飞猫云并确认长期需要时，学生版才体现年均价格优势。比较价格时应把退款和剩余周期一起考虑。"]],
+    ["流量与线路信息差异", ["飞猫云学生版公开流量为 100GB/月，极连云 Mini 为 60GB/月。极连云套餐信息强调 IEPL 专线和全节点 1 倍；飞猫云则需要在实时页面进一步确认常用节点、倍率和线路变化。", "60GB 适合轻量访问，100GB 对视频和多设备更宽松，但流量数字不能取代稳定性。使用同一网络、同一客户端和同一任务测试两者，才有公平比较基础。"]],
+    ["适合人群怎么分", ["预算固定、每月用量高于 60GB、能接受年付且已完成测试，可以优先观察飞猫云学生版。更重视月付灵活、初次试用和专线套餐说明的人，可以先从极连云 Mini 开始。", "如果需求增长，两家也都有更高流量方案。升级前比较单位流量价格、到期日、设备规则和实际晚高峰，不要只根据最低套餐给整个服务下结论。"]],
+    ["公平测试方法", ["连续三天在相近时段分别测试香港、日本、新加坡和美国节点，用网页、AI、视频和订阅更新记录成功率。不要一边使用 Wi-Fi、一边使用有线网络，也不要拿不同地区节点的峰值做结论。", "最后把价格、核心任务成功率、切换节点次数、公告清晰度和工单响应放进同一张表。分数更高的一家做主力，另一家只有在入口和线路足够独立时才适合作备用。"]]
+  ],
+  "jilianyun-vs-weifengwangluo": [
+    ["最低套餐不是同一种产品", ["极连云 Mini 为 8 元/月、60GB，微风网络清风为 137 元/年、100GB/月。极连云用低月付降低首次测试门槛，微风清风则用年付换取较低月均价格和更高月流量。", "如果尚未测试，8 元月付更便于快速判断；如果已确认微风线路适合自己的网络，年付才有成本意义。不能把月均价格直接相减后就得出优劣。"]],
+    ["IEPL 与 IPLC 怎么比较", ["极连云公开信息强调 IEPL，微风网络强调全 IPLC。两者都是用户常见的专线标签，但无法单独预测你所在城市、运营商和晚高峰的表现，也不能证明某一标签在所有任务中绝对更好。", "最有效的比较是固定香港、日本或新加坡地区，分别测试延迟、抖动、视频缓冲、AI 登录和长连接。线路名负责帮助筛选，任务成功率负责做决定。"]],
+    ["按流量与设备选择", ["极连云 60GB 适合个人轻量使用，微风清风 100GB 更宽松；两者公开说明都涉及多设备使用，但总流量仍会被所有设备共同消耗。家庭共享时，系统更新和视频最容易拉高用量。", "需要 200GB 以上时，应继续比较极连云 Medium、Large 与微风乘风、破风，而不是只看最低档。把每 GB 成本和付款周期一起计算，结果会更接近真实支出。"]],
+    ["选择结论", ["初次购买、预算低、希望随时退出，优先从极连云月付验证；确认需要 100GB 左右、愿意年付且微风测试结果稳定，可以再考虑清风。", "工作和账号访问不能只依赖一个服务。无论选哪家做主力，备用机场应使用不同入口与通知渠道，并保留订阅和订单记录。"]]
+  ],
+  "feimaoyun-vs-weifengwangluo": [
+    ["两个年付入门档怎样比较", ["飞猫云学生版为 84 元/年、100GB/月，微风清风为 137 元/年、100GB/月。两者公开月流量相同，价格差 53 元，因此比较重点应该从流量转向线路信息、节点覆盖、客户端支持和实际稳定性。", "低价不自动等于更高性价比，较高价格也不自动代表更稳定。只有在相同运营商和时段测试后，才能判断额外支出是否换来了对自己有用的体验。"]],
+    ["线路说明与使用任务", ["微风网络页面强调全 IPLC 专线、不限设备和不限速；飞猫云需要结合实时面板确认具体节点与倍率。对 AI 登录、视频和跨境办公来说，稳定的出口与地区一致性往往比单次下载峰值更重要。", "建议各选香港、日本、新加坡节点，记录三天晚高峰的任务成功率。如果一方需要频繁切换节点才能完成同一任务，即使测速更高，也可能不适合作主力。"]],
+    ["年付风险如何控制", ["两家最低档都按年付，首次购买时无法像月付那样快速退出。应先确认是否提供试用、退款规则、备用域名、公告入口和工单方式，并把可承受损失设为预算上限。", "不要同时购买两个未经测试的年付套餐。更稳的顺序是先验证其中一个，保留现有主力或月付备用，等真实记录稳定后再决定是否长期续费。"]],
+    ["谁更适合哪类用户", ["预算极低、100GB 足够且飞猫云节点测试通过，学生版的价格更直接。看重 IPLC 线路说明、愿意多支付 53 元年费且微风在本地表现更好，可以考虑清风。", "家庭或重度视频用户不应只比较这两个 100GB 档位，还要观察飞猫云家庭版和微风更高流量月付套餐，避免每月中途耗尽流量。"]]
+  ],
+  "hk-tw-jp-node-choice": [
+    ["香港节点：延迟优势最常见", ["香港离中国大陆较近，很多用户会把它作为网页、聊天、AI 和日常访问的第一选择。优势通常是延迟较低、连接建立快，但热门线路在晚高峰也更容易拥塞，节点多不等于每个入口都稳定。", "测试香港节点时要关注运营商差异。同一机场在电信、联通、移动上的入口可能不同，家里宽带快不代表手机流量同样快。连续测试比只看 30ms 或 50ms 的 Ping 更可靠。"]],
+    ["台湾节点：内容地区与链路并重", ["台湾节点常用于特定地区内容、繁体中文服务或作为香港节点的替代。部分网络路径可能绕行，延迟不一定始终低于日本，因此不能只按地图距离判断。", "如果账号长期绑定台湾地区，应尽量固定少数稳定节点，避免频繁跨国家切换触发验证。测试时同时检查 IP 地区、DNS 解析和目标平台实际内容，不要只看节点名称。"]],
+    ["日本节点：覆盖广但要看入口", ["日本节点在机场中普遍较多，适合访问日本服务、开发者平台、视频和部分游戏相关资源。东京、大阪等出口可能使用不同运营商，实际带宽和晚高峰负载会有差异。", "遇到日本节点延迟略高但下载更快并不矛盾：延迟反映往返时间，下载还取决于带宽和目标服务器。网页和实时任务重视延迟，下载和视频更要看持续吞吐。"]],
+    ["三地选择顺序", ["日常先测香港，地区内容明确时选择台湾或日本，香港拥塞时再把日本作为备用。每次用相同任务测试，记录网页首开、视频缓冲、AI 验证、丢包和节点切换次数。", "机场选择应保证常用地区至少有两个可替换节点。若某个机场只有节点名称好看，却在你的核心任务中反复失败，就不应因为地区齐全而长期续费。"]]
+  ],
+  "airport-speed-factors": [
+    ["第一层：设备与家庭网络", ["机场测速从设备开始。老旧手机的无线芯片、电脑省电策略、2.4GHz Wi-Fi 干扰、路由器负载和后台下载都会限制速度。先用有线或 5GHz Wi-Fi 对照，并暂停云同步和系统更新。", "如果直连测速已经远低于宽带套餐，切换任何机场都无法补回本地损失。应先解决信号、网线、路由器和运营商基础连接，再评价节点。"]],
+    ["第二层：客户端与入口", ["规则模式、全局模式、TUN、DNS 和客户端内核会影响流量路径。配置错误可能造成部分资源直连、解析缓慢或应用未被代理。更新订阅后要确认策略组实际选中了目标节点。", "机场入口连接到本地运营商的质量同样重要。电信、联通和移动可能走不同入口，同一节点名称并不意味着三家运营商使用相同路径。"]],
+    ["第三层：中转、出口和目标站点", ["公网直连、BGP 中转、IEPL、IPLC 等线路会影响跨境路径；出口节点负载和带宽决定持续吞吐；目标站点本身还可能限速或选择较远的 CDN。任何一层拥塞都会让实际体验下降。", "测速网站通常选择距离较近、容量较大的服务器，因此结果好看；小网站、AI 服务和代码仓库的服务器位置不同，不能直接复用测速结论。"]],
+    ["一套可复现的测试流程", ["先记录直连网络，再固定客户端、节点和测速服务器，分别测延迟、抖动、丢包、下载与上传。随后运行网页、YouTube、AI、Telegram 和 GitHub 等真实任务，并在晚高峰重复。", "只有当多个节点在同一网络都异常，才更像机场或线路问题；只有某台设备异常，应先查设备与客户端；只有某个网站异常，则要考虑 DNS、规则和目标服务。"]]
+  ],
+  "traffic-reset-day": [
+    ["三种常见重置方式", ["自然月重置通常在每月 1 日恢复流量；购买日重置以首次订阅日期为周期，例如 15 日购买则每月 15 日更新；固定账单日则由服务商统一设定。三种规则都可能受面板时区影响。", "套餐到期日和流量重置日不是一回事。一个套餐可能在 10 月 20 日到期，却在 10 月 1 日重置流量；如果混淆，就会误判剩余可用天数。"]],
+    ["剩余流量是否结转", ["多数月度套餐在重置时清零未用流量，但也有服务允许结转或购买额外流量包。不能根据“每月 100GB”自行推断，必须查看套餐说明和面板订单规则。", "临近重置日前一次性下载大量内容，只是为了不浪费流量，可能造成不必要使用。更合理的是根据三个月平均消耗调整套餐档位。"]],
+    ["续费与升级如何影响重置", ["提前续费可能延长到期时间，也可能立即创建新周期；升级可能补差价后马上增加流量，或等下个周期生效。不同面板实现不一致，点击付款前要阅读结算页。", "操作前截图保存剩余流量、重置日和到期日。完成后再次核对，出现计算异常时带上订单号和截图提交工单，比口头描述更容易处理。"]],
+    ["怎样避免月中断流", ["先记录七天用量，乘以四估算月度需求，再为系统更新、旅行和高清视频留出余量。多设备家庭要分别查看主要设备，避免某台电视或云盘在后台消耗大部分流量。", "若每月都在重置前耗尽，与其反复购买流量包，不如比较更高档套餐的单位成本；若长期剩余一半以上，则应在下个周期降档。"]]
+  ],
+  "long-term-airport-operation": [
+    ["成本结构必须可持续", ["机场需要持续支付入口、中转、出口、带宽、域名、面板和客服成本。长期远低于市场常见水平的大流量套餐，可能依赖高超售、促销补贴或短期获客，用户应降低长期付款比例。", "价格高也不等于一定可靠，关键是套餐规则是否清楚、调整是否提前通知、线路投入是否能从维护记录和实际体验中得到验证。"]],
+    ["技术维护要有连续性", ["节点故障无法完全避免，成熟运营更重要的表现是监控及时、影响范围明确、备用线路可切换，并在恢复后说明结果。只有“正在处理”而长期没有更新，信息价值很低。", "订阅、客户端教程和备用域名也属于技术维护。服务商频繁换入口却不给验证方式，会把风险转移给用户，增加误入仿冒页面的概率。"]],
+    ["公告与客服形成可信记录", ["可靠公告应包含时间、受影响节点、预计动作和后续进度。客服不一定秒回，但工单应能在合理时间内确认问题，并区分个别配置与大面积故障。", "购买前可以回看过去几个月公告：是否只有促销，没有维护；故障是否有结束说明；套餐调整是否提前通知。这些历史比首页宣传更能说明运营习惯。"]],
+    ["用户怎样控制长期风险", ["首次购买用月付或可承受的小额套餐，连续观察至少一个周期，再决定是否季付或年付。保存订单、公告入口、官网和备用域名，不把唯一联系渠道留在同一个平台。", "主力与备用应尽量分散域名、面板、线路和支付记录。即使一家机场长期表现良好，也不应把永久稳定当作前提。"]]
+  ],
+  "tun-mode-airport-guide": [
+    ["TUN 模式做了什么", ["普通系统代理主要让遵循系统代理设置的应用走机场，一些游戏、命令行程序或自带网络栈的软件可能绕过。TUN 模式创建虚拟网卡，在更低层接管 IP 流量，因此覆盖范围通常更广。", "它不是一种更快的线路，也不会提升机场出口带宽。开启后体验变好，往往是因为原本没有被代理的应用终于进入了规则处理。"]],
+    ["哪些情况值得开启", ["某个应用不支持系统代理、需要处理 UDP、希望统一接管多个程序，或规则模式下明显有流量遗漏时，可以测试 TUN。测试前应先确认普通节点连接正常。", "如果只是浏览器和常见聊天软件使用，系统代理已经满足需求，就没有必要为了“更高级”而开启。配置层越多，DNS、局域网和权限问题也越难排查。"]],
+    ["常见副作用与排查", ["TUN 需要管理员或 VPN 权限，可能与其他 VPN、杀毒软件、防火墙、虚拟机和企业网络冲突。表现包括无法上网、局域网设备不可见、DNS 解析异常或客户端退出后网络没有恢复。", "遇到异常先关闭 TUN，退出客户端并恢复系统代理，再检查虚拟网卡和 DNS。不要同时运行多个接管网络的工具；确认基础连接恢复后，再逐项开启功能。"]],
+    ["安全启用步骤", ["备份当前配置，更新客户端内核，选择官方文档推荐的 TUN 模式，首次仅使用默认规则。分别测试国内直连、海外网页、DNS、局域网打印机和休眠恢复。", "稳定后再添加自定义规则。每次只改一个设置并记录结果，出现问题就能快速回退。手机端还要允许后台运行，避免系统省电关闭虚拟网络。"]]
+  ],
+  "objective-airport-review": [
+    ["先公开测试边界", ["评测应说明日期、城市、运营商、宽带类型、设备、客户端版本、套餐和节点。没有这些条件，读者无法判断结果能否迁移到自己的网络。", "机场状态会变化，因此文章要标注发布时间和更新日期，避免把一次测试写成永久结论。套餐价格和注册链接也应提醒以官网实时页面为准。"]],
+    ["事实、体验和推测分开", ["套餐价格、流量、节点列表和公告属于可核验事实；“晚高峰比较稳”属于特定环境体验；“未来应该不会跑路”则是无法验证的推测。三者混写会让广告判断伪装成数据。", "更客观的写法是展示任务成功率、测速时间、故障恢复和原始观察，再说明结论只适用于测试环境。避免使用“永久稳定”“全网最好”等绝对表述。"]],
+    ["利益关系必须披露", ["文章若使用推广链接、接受赞助、获赠套餐或与服务商存在合作，应在读者做决定前清楚说明。披露不会自动让评测失去价值，隐藏关系才会破坏可信度。", "推广页面仍可以给出负面信息，例如年付风险、退款限制、节点倍率和不适合人群。能帮助读者放弃不合适的购买，才说明评价标准真正独立。"]],
+    ["建立可重复的测试表", ["至少连续三天覆盖白天与晚高峰，记录延迟、抖动、丢包、网页、视频、AI、Telegram、GitHub、订阅更新和故障恢复。不同机场使用相同设备、任务和时段。", "最终评分按价格透明、核心任务、稳定性、节点覆盖、客户端教程、公告售后和风险控制分项呈现。总分只是摘要，分项数据才方便不同需求的读者重新加权。"]]
+  ]
+};
+
+function expandedKnowledgeSections(item) {
+  if (expandedArticleDetails[item.slug]) return expandedArticleDetails[item.slug];
+  const sections = {
+    nodes: [
+      ["地区节点应该怎样开始比较", `阅读“${item.title}”时，先把节点地区和线路类型分开。香港、台湾、日本、新加坡和美国节点面向的目标服务、跨境路径和本地运营商并不相同，物理距离近也不代表每个时段都更快。${item.intro}`],
+      ["把节点名称转成可验证的测试", `节点名称中的地区、倍率、线路和解锁提示只能作为初筛线索。建议用同一台设备、同一网络和相近时间，分别记录网页打开、视频播放、AI 登录、GitHub 访问和订阅更新结果。${item.takeaway}`],
+      ["本站机场页面怎么用", "本站的飞猫云、极连云、微风网络以及其他机场详情页都按套餐、适用人群、线路观察和购买前检查项整理。进入具体页面后，先看最低公开套餐，再按自己的运营商和常用地区做短周期验证，不要把节点数量直接当成质量分数。"],
+      ["地区节点的复查方法", "节点表现会受晚高峰、入口负载、出口带宽和目标平台策略影响。建议至少在工作日白天、晚间和周末各测一次，并把延迟、丢包、实际任务是否成功和是否需要频繁切换分开记录。"]
+    ],
+    performance: [
+      ["速度问题要分层排查", `机场体验不是一个单独的测速数字。${item.intro} 可以先检查 Wi-Fi 和本地网络，再比较多个节点，最后观察目标站点是否本身响应缓慢。这样能区分本地拥塞、节点负载、跨境链路和目标服务限制。`],
+      ["测速数据怎样才有参考价值", "同一节点至少在多个时间段重复测试，并记录延迟、抖动、丢包、下载、上传和真实任务结果。测速工具适合发现异常，不适合直接替代网页、视频、AI 或远程协作的实际体验。"],
+      ["本站机场怎么做短测", `可以从飞猫云、极连云、微风网络等本站机场详情页选 2 到 3 个候选，先购买短周期套餐，再用固定清单测试。${item.takeaway} 测试结果应标记日期和网络环境，方便续费前复盘。`],
+      ["如何形成一个月记录", "每次记录四项即可：常用节点是否连通、核心任务是否完成、晚高峰是否出现明显下降、故障后多久恢复。连续记录比截图更有价值，也更适合判断是否需要主力加备用。"]
+    ],
+    plans: [
+      ["先看流量规则再看总量", `机场套餐里的流量、重置日、倍率和有效期共同决定真实可用量。${item.intro} 同样写着 100GB 的套餐，如果热门节点按倍率扣除，实际可用体验可能完全不同。`],
+      ["按场景估算机场用量", "网页检索、文字聊天和 AI 对话通常属于轻中度使用，高清视频、直播、系统更新和多设备共享会快速消耗流量。建议先记录七天用量，再选择月付、一次性流量包或大流量套餐。"],
+      ["本站套餐页怎样看", `本站飞猫云、极连云、微风网络等机场页面会把公开套餐名称、价格、流量和说明放在表格里，便于横向比较。${item.takeaway} 具体价格、流量重置和设备规则调整较快，下单前必须回到服务商官网确认。`],
+      ["升级、续费和到期前检查", "在升级或自动续费前，截图保存当前剩余流量、到期时间和原套餐规则，再确认补差价和生效时间。没有测试过的年付或超大套餐不宜因为单价低就直接购买。"]
+    ],
+    operations: [
+      ["长期运营要看哪些公开信号", `价格和节点之外，还要看入口是否稳定、公告是否持续、工单能否回复、维护是否有进度和套餐规则是否透明。${item.intro}`],
+      ["域名和公告变化怎么处理", "不要直接相信群聊或搜索结果中的新入口。应通过已保存的公告渠道核对域名、面板和订阅地址，更新后及时在客户端验证，旧订阅和新订阅不要同时长期保留。"],
+      ["本站内容如何承接品牌长尾", `本站收录飞猫云机场、极连云机场、微风网络等具体品牌页，统一采用“套餐信息 + 使用场景 + 风险提示 + 真实测试建议”的结构。${item.takeaway} 这种写法既方便搜索用户进入，也避免把推广页面写成无条件背书。`],
+      ["遇到维护或客服异常怎么办", "先看最近公告和备用入口，再用多个节点、客户端和网络环境交叉验证。若工单长时间无回应，暂停追加长期费用，保留订单与套餐信息，并准备一个入口和线路不同的备用机场。"]
+    ],
+    clients: [
+      ["先确认问题属于客户端还是机场", `客户端模式、订阅缓存、系统代理、后台权限和 DNS 都可能影响结果。${item.intro} 如果只有一个应用异常，优先检查规则；如果所有应用都异常，再检查订阅和系统代理。`],
+      ["订阅和规则的基本维护", "订阅地址应当私密保存，更新前先确认来源。出现重复节点、旧节点残留或策略失效时，记录当前配置后再清理，避免直接覆盖唯一可用配置。"],
+      ["本站机场与客户端入口", `飞猫云、极连云、微风网络等本站机场详情页都保留客户端和订阅使用提醒。${item.takeaway} 新手可以先用常见客户端的规则模式完成验证，确认基础连接后再尝试 TUN、分应用代理或自定义规则。`],
+      ["移动端和电脑端要分别测试", "手机要关注休眠、省电和移动网络切换，电脑要关注系统代理、开机启动和虚拟网卡权限。两个设备表现不同并不一定意味着套餐异常，应分别记录网络、客户端版本和节点。"]
+    ],
+    reviews: [
+      ["评测必须把事实和判断分开", `机场评测应明确测试日期、网络环境、套餐口径和观察范围。${item.intro} 价格和节点是事实信息，稳定、好用和适合长期使用则需要说明依据和限制。`],
+      ["一个可复用的评分框架", "可以把价格透明度、核心任务成功率、晚高峰稳定性、节点覆盖、客户端教程、公告售后和风险控制分别打分，再按自己的使用场景设置权重。评分表公开后，读者才有机会复核。"],
+      ["本站机场推荐如何避免夸大", `本站飞猫云、极连云、微风网络等机场页面主要提供公开套餐整理、适合人群和购买前检查项，不把单次测速包装成永久结论。${item.takeaway} 具体选择仍建议用月付或短周期真实验证。`],
+      ["榜单和个人选择的关系", "榜单适合缩小候选范围，不能替代个人网络环境测试。对一个人来说最重要的可能是 AI 登录和晚高峰稳定，对另一个人来说可能是视频流量和多设备，排序自然会不同。"]
+    ],
+    recommendation: [
+      ["先按需求建立候选池", `机场推荐不应只看最低价格或节点数量。${item.intro} 先写下核心任务、预算、设备数和常用时段，再从本站机场榜单里选出 2 到 3 个候选。`],
+      ["套餐与线路需要一起看", "同样的月付价格可能对应不同流量、倍率、节点地区和设备规则。建议先读对应机场测评页，再确认公告、客户端教程、退款和订阅更新入口。"],
+      ["本站机场推广页怎么判断", `飞猫云、极连云、微风网络等机场页面都提供了公开注册入口和套餐参考，但本站不运营第三方服务。${item.takeaway} 下单前应以官网实时页面为准，优先短周期测试。`],
+      ["建立主力与备用组合", "验证通过后再决定主力机场；低价但偶尔可用的机场可以作为备用。两者尽量使用不同入口和通知渠道，并定期检查订阅、节点和支付记录是否仍然有效。"]
+  ]};
+  return sections[item.category] || sections.recommendation;
+}
+
+function renderExpandedKnowledgeArticle(item, index, next) {
+  const category = knowledgeCategories.find((entry) => entry.slug === item.category);
+  const description = `${item.title}${item.intro} 本文从机场推荐、机场节点、套餐流量、使用体验和购买前风险角度给出可执行判断。`;
+  const faq = [
+    ["仅凭这篇文章的信息适合直接长期购买吗？", "不建议。文章用于建立判断框架，仍需确认实时套餐规则，并用自己的网络和真实任务做短周期测试。"],
+    ["本站推荐的机场信息会不会变化？", "会。价格、入口、节点和套餐可能调整，页面内容仅作购买前参考，实时信息以服务商官网和公告为准。"],
+    ["遇到体验不一致应该怎么判断？", "记录时间、网络、客户端、节点和具体任务，换节点与网络交叉测试；如果仍异常，再联系服务商工单。"]
+  ];
+  const content = `    <article class="article">
+      <div class="article-hero">
+        <p class="eyebrow">${category.name} · 长尾专题</p>
+        <h1>${item.title}</h1>
+        <p class="lead">${item.intro} 本文把这个问题放回机场推荐、机场测评和实际使用场景中分析，方便读者形成自己的判断标准。</p>
+      </div>
+      <section class="notice"><strong>核心结论：</strong>${item.takeaway} 价格、线路、节点、套餐和服务商入口可能变化，阅读后仍应以官网实时信息和自己的测试结果为准。</section>
+      ${knowledgeCategoryNav()}
+${expandedKnowledgeSections(item).map(([heading, paragraphs]) => `      <section>
+        <h2>${heading}</h2>
+        ${(Array.isArray(paragraphs) ? paragraphs : [paragraphs]).map((paragraph) => `<p>${paragraph}</p>`).join("\n        ")}
+      </section>`).join("\n")}
+      ${airportLongtailLinks(item)}
+      <section>
+        <h2>购买前检查清单</h2>
+        <p>记录套餐价格、月流量、倍率、重置日、设备数、常用节点、客户端教程、公告入口和退款规则。对任何机场推荐或机场注册链接，都先核实这些字段，再决定是否注册。</p>
+        <p>测试至少覆盖工作日白天、晚间 20 点到 23 点和周末，并同时观察网页、视频、AI、社交、订阅更新和手机电脑双端。测试通过后再考虑季度或年付，避免把推广页面的最低价格当成最终成本。</p>
+      </section>
+      <section>
+        <h2>常见问题</h2>
+        <div class="faq-list">${faq.map(([question, answer]) => `<h3>${question}</h3><p>${answer}</p>`).join("\n")}</div>
+      </section>
+      <section>
+        <h2>同类专题</h2>
+        <div class="post-grid compact">${knowledgeTopics.filter((topic) => topic.category === item.category && topic.slug !== item.slug).slice(0, 4).map(knowledgeCard).join("")}</div>
+      </section>
+      <aside class="notice">下一篇：<a href="/knowledge/${next.slug}.html">${next.title}</a></aside>
+    </article>`;
+  return layout({
+    title: item.title,
+    description,
+    keywords: `${category.keywords},${item.title.replace(/[？?]/g, "")},飞猫云机场,极连云机场,微风网络`,
+    pathName: `/knowledge/${item.slug}.html`,
+    content,
+    extraHead: articleSchema(item.title, description, `/knowledge/${item.slug}.html`) + faqSchema(faq)
+  });
 }
 
 function airportThumbTitle(name) {
@@ -1268,22 +1578,48 @@ ${priceTable(item)}
 
 function knowledgePage() {
   const intro = `<div class="feed-intro">
-    <p>这里按泛搜索意图整理机场推荐、梯子推荐、稳定机场、便宜机场、专线线路、客户端配置、AI 工具访问和流媒体解锁等科普主题。每篇都尽量给出可执行检查清单，方便先建立判断框架，再进入具体机场测评。</p>
+    <p>这里按搜索意图整理机场推荐、线路与节点、速度稳定、套餐流量、运营服务、客户端配置和评测方法。每个专题都连接到本站机场榜单与机场测评，方便从泛关键词进入具体机场长尾页面。</p>
   </div>
-${seoKnowledgeLinks()}`;
-  const content = shell("机场推荐与梯子推荐科普", { href: "/airport/", label: "机场榜单" }, intro + knowledgeTopics.map((item, index) => knowledgeFeedRow(item, index, index < 2)).join(""));
+${knowledgeCategoryNav()}${seoKnowledgeLinks()}`;
+  const body = knowledgeCategories.map((category) => {
+    const items = knowledgeTopics.filter((item) => item.category === category.slug);
+    return `<section class="topic-section">
+      <div class="feed-head"><h2>${category.name}</h2><a href="/knowledge/${category.slug}/">查看全部 ${items.length} 篇</a></div>
+      ${items.map((item, index) => knowledgeFeedRow(item, index, index === 0)).join("")}
+    </section>`;
+  }).join("");
+  const content = shell("机场推荐与梯子推荐科普", { href: "/airport/", label: "机场榜单" }, intro + body);
   return layout({
-    title: "机场科普知识：机场推荐、梯子推荐、稳定机场和订阅使用指南",
-    description: `${knowledgeTopics.length} 篇原创机场科普知识文章，覆盖机场推荐、梯子推荐、稳定机场、便宜机场、专线线路、客户端配置、AI 工具访问、流媒体解锁、DNS、安全和使用风险。`,
+    title: "机场科普知识目录：机场推荐、线路、稳定性、套餐和客户端",
+    description: `${knowledgeTopics.length} 篇原创机场科普文章，按机场推荐、线路节点、速度稳定、套餐流量、运营服务、客户端配置和评测方法分类，覆盖机场长尾搜索词。`,
     pathName: "/knowledge/",
     content,
     extraHead: knowledgeListSchema()
   });
 }
 
+function knowledgeCategoryPage(category) {
+  const items = knowledgeTopics.filter((item) => item.category === category.slug);
+  const intro = `<div class="feed-intro">
+    <p>${category.description} 本专题共整理 ${items.length} 篇文章，覆盖 ${category.keywords} 等长尾词，并从本站机场推荐、机场测评和实际使用场景出发给出购买前参考。</p>
+  </div>
+  ${knowledgeCategoryNav()}`;
+  const body = items.map((item, index) => knowledgeFeedRow(item, index, index < 2)).join("");
+  const content = shell(category.name, { href: "/knowledge/", label: "全部科普" }, intro + body);
+  return layout({
+    title: `${category.name}专题：机场推荐长尾知识与使用指南`,
+    description: `${category.description} 汇总机场推荐、机场节点、机场测评和套餐使用相关的长尾文章，帮助用户按真实场景筛选机场。`,
+    keywords: `${category.keywords},机场推荐,机场测评,飞猫云机场,极连云机场,微风网络`,
+    pathName: `/knowledge/${category.slug}/`,
+    content,
+    extraHead: topicListSchema(category, items)
+  });
+}
+
 function knowledgeArticle(item, index) {
   const next = knowledgeTopics[(index + 1) % knowledgeTopics.length];
   const title = item.title;
+  if (item.isExpanded) return renderExpandedKnowledgeArticle(item, index, next);
   const seoDetail = seoKnowledgeArticles[item.slug];
   if (seoDetail) return renderSeoKnowledgeArticle(item, index, next, seoDetail);
   const description = `${item.intro} ${item.takeaway} 本文围绕机场推荐、梯子推荐、稳定机场、套餐线路和订阅风险给出可执行检查方法。`;
@@ -1393,6 +1729,7 @@ function sitemap() {
     ["/rank/", "0.9"],
     ["/reviews/", "0.9"],
     ["/knowledge/", "0.9"],
+    ...knowledgeCategories.map((category) => [`/knowledge/${category.slug}/`, "0.85"]),
     ["/about/", "0.6"],
     ...airports.map((item) => [`/posts/${item.slug}.html`, "0.8"]),
     ...knowledgeTopics.map((item) => [`/knowledge/${item.slug}.html`, "0.8"])
@@ -1461,6 +1798,7 @@ ${SITE_NAME} 是一个中文机场推荐和机场测评静态博客，围绕机�
 - 机场推荐: ${SITE_URL}/airport/
 - 机场评测: ${SITE_URL}/reviews/
 - 科普知识: ${SITE_URL}/knowledge/
+${knowledgeCategories.map((category) => `- ${category.name}: ${SITE_URL}/knowledge/${category.slug}/`).join("\n")}
 - 关于: ${SITE_URL}/about/
 - RSS: ${SITE_URL}/feed.xml
 - Sitemap: ${SITE_URL}/sitemap.xml
@@ -1541,8 +1879,28 @@ code { padding: 2px 5px; border-radius: 4px; background: #f5f5f5; color: #c93530
   font-size: 13px;
   line-height: 1.25;
 }
-.top-nav { display: flex; align-items: center; gap: 30px; color: #08131f; font-size: 16px; }
+.top-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; color: #08131f; font-size: 15px; }
 .top-nav a:hover { color: var(--red); }
+.nav-directory { position: relative; }
+.nav-directory summary { cursor: pointer; list-style: none; }
+.nav-directory summary::-webkit-details-marker { display: none; }
+.nav-directory summary::after { content: "▾"; margin-left: 5px; color: #8a9299; }
+.nav-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  z-index: 30;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(110px, 1fr));
+  width: 280px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 14px 34px rgba(19, 29, 40, .14);
+}
+.nav-menu a { padding: 8px 10px; border-radius: 4px; }
+.nav-menu a:hover { background: #fff3f2; }
 main { min-height: 72vh; padding: 20px 0 56px; }
 .page-shell {
   display: grid;
@@ -1598,6 +1956,26 @@ main { min-height: 72vh; padding: 20px 0 56px; }
   font-size: 14px;
   line-height: 1.85;
 }
+.topic-directory {
+  display: grid;
+  grid-template-columns: auto repeat(7, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 8px;
+  margin: 0 20px 20px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fafafa;
+}
+.article > .topic-directory { margin: 28px 0 12px; }
+.topic-directory > strong { align-self: center; padding: 0 6px; font-size: 14px; }
+.topic-directory > a { display: grid; align-content: center; min-height: 54px; padding: 8px; border-radius: 4px; background: #fff; text-align: center; }
+.topic-directory > a:hover { color: var(--red); }
+.topic-directory span { font-size: 14px; font-weight: 700; }
+.topic-directory small { color: var(--muted); font-size: 11px; }
+.topic-section { border-top: 12px solid var(--bg); }
+.topic-section .feed-head h2 { position: relative; margin: 0; padding-left: 16px; font-size: 18px; }
+.topic-section .feed-head h2::before { content: ""; position: absolute; left: 0; top: 50%; width: 4px; height: 18px; transform: translateY(-50%); border-radius: 2px; background: var(--red); }
 .rank-section {
   padding: 0 20px 22px;
 }
@@ -1895,12 +2273,18 @@ th { background: #fafafa; font-size: 14px; }
 @media (max-width: 980px) {
   .site-header { position: static; flex-direction: column; align-items: flex-start; padding: 16px 0; }
   .top-nav { gap: 16px; font-size: 15px; }
+  .topic-directory { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .topic-directory > strong { grid-column: 1 / -1; }
   .page-shell { grid-template-columns: 1fr; }
   .sidebar { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
   main { padding-top: 12px; }
   .brand-slogan { display: none; }
+  .top-nav { width: 100%; gap: 10px 16px; }
+  .nav-directory { position: static; }
+  .nav-menu { left: 0; right: auto; width: min(300px, calc(100vw - 32px)); }
+  .topic-directory { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-right: 12px; margin-left: 12px; }
   .feed-row { grid-template-columns: 1fr; }
   .feed-thumb, .thumb { width: 100%; }
   .thumb { height: 160px; }
@@ -1928,6 +2312,7 @@ function build() {
   write(path.join(root, "rank", "index.html"), rankPage());
   write(path.join(root, "reviews", "index.html"), reviewsPage());
   write(path.join(root, "knowledge", "index.html"), knowledgePage());
+  knowledgeCategories.forEach((category) => write(path.join(root, "knowledge", category.slug, "index.html"), knowledgeCategoryPage(category)));
   write(path.join(root, "about", "index.html"), aboutPage());
   airports.forEach((item, index) => write(path.join(root, "posts", `${item.slug}.html`), articlePage(item, index)));
   knowledgeTopics.forEach((item, index) => write(path.join(root, "knowledge", `${item.slug}.html`), knowledgeArticle(item, index)));

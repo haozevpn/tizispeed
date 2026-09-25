@@ -12,6 +12,13 @@ TiziSpeed 机场观察 是一个中文机场推荐和机场测评静态博客，
 - 机场推荐: https://tizispeed.com/airport/
 - 机场评测: https://tizispeed.com/reviews/
 - 科普知识: https://tizispeed.com/knowledge/
+- 机场推荐: https://tizispeed.com/knowledge/recommendation/
+- 线路与节点: https://tizispeed.com/knowledge/nodes/
+- 速度与稳定: https://tizispeed.com/knowledge/performance/
+- 套餐与流量: https://tizispeed.com/knowledge/plans/
+- 运营与服务: https://tizispeed.com/knowledge/operations/
+- 客户端与配置: https://tizispeed.com/knowledge/clients/
+- 评测方法: https://tizispeed.com/knowledge/reviews/
 - 关于: https://tizispeed.com/about/
 - RSS: https://tizispeed.com/feed.xml
 - Sitemap: https://tizispeed.com/sitemap.xml
@@ -86,7 +93,19 @@ TiziSpeed 机场观察 是一个中文机场推荐和机场测评静态博客，
 - 机场节点命名怎么看懂: https://tizispeed.com/knowledge/node-name-reading.html
 - 机场工单怎么写更容易得到回复: https://tizispeed.com/knowledge/support-ticket-guide.html
 - 机场长期收藏清单怎么维护: https://tizispeed.com/knowledge/airport-watchlist.html
+- 2026年飞猫云机场套餐怎么选？学生版与个人版对比: https://tizispeed.com/knowledge/feimaoyun-plan-guide.html
+- 极连云机场怎么样？8元套餐、IEPL线路与适合人群: https://tizispeed.com/knowledge/jilianyun-plan-line-guide.html
+- 微风网络值得买吗？IPLC专线套餐与流量选择: https://tizispeed.com/knowledge/weifengwangluo-iplc-guide.html
+- 飞猫云和极连云哪个好？年付低价与月付入门对比: https://tizispeed.com/knowledge/feimaoyun-vs-jilianyun.html
+- 极连云和微风网络哪个好？IEPL与IPLC套餐对比: https://tizispeed.com/knowledge/jilianyun-vs-weifengwangluo.html
+- 飞猫云和微风网络哪个好？年付套餐与专线选择指南: https://tizispeed.com/knowledge/feimaoyun-vs-weifengwangluo.html
+- 香港节点、台湾节点和日本节点应该怎么选？: https://tizispeed.com/knowledge/hk-tw-jp-node-choice.html
+- 机场速度受哪些因素影响？从本地网络到出口带宽: https://tizispeed.com/knowledge/airport-speed-factors.html
+- 机场套餐中的重置日是什么意思？: https://tizispeed.com/knowledge/traffic-reset-day.html
+- 一家机场能够长期运营需要具备哪些条件？: https://tizispeed.com/knowledge/long-term-airport-operation.html
+- TUN模式是什么？哪些情况下需要开启？: https://tizispeed.com/knowledge/tun-mode-airport-guide.html
+- 机场评测文章如何保持客观可信？: https://tizispeed.com/knowledge/objective-airport-review.html
 
 ## 内容说明
 
-本站内容由 TiziSpeed 按机场套餐、适用场景、购买前检查项和新手使用问题原创整理，整理日期 2026-09-23。本站不运营节点服务，所有套餐和入口以服务商实时页面为准。
+本站内容由 TiziSpeed 按机场套餐、适用场景、购买前检查项和新手使用问题原创整理，整理日期 2026-09-26。本站不运营节点服务，所有套餐和入口以服务商实时页面为准。
