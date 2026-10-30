@@ -545,5 +545,75 @@
       <description>机场评测需要公开测试时间、网络环境、套餐口径和利益关系，避免把一次体验写成永久承诺。</description>
       <pubDate>Fri, 25 Sep 2026 16:00:00 GMT</pubDate>
     </item>
+    <item>
+      <title>机场和 VPS 自建有什么区别？普通用户怎么选？</title>
+      <link>https://tizispeed.com/knowledge/airport-vs-vps-choice.html</link>
+      <guid>https://tizispeed.com/knowledge/airport-vs-vps-choice.html</guid>
+      <description>机场是购买现成节点服务，VPS 自建需要自己配置服务器、协议、域名和维护，适合的人群与时间成本不同。</description>
+      <pubDate>Fri, 25 Sep 2026 16:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>外贸和跨境电商机场怎么选？</title>
+      <link>https://tizispeed.com/knowledge/cross-border-ecommerce-airport.html</link>
+      <guid>https://tizispeed.com/knowledge/cross-border-ecommerce-airport.html</guid>
+      <description>外贸和跨境电商用户更重视固定工作环境、后台登录稳定、地区一致性和多设备协作，而不是单次测速峰值。</description>
+      <pubDate>Fri, 25 Sep 2026 16:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>远程办公和学术检索适合什么机场？</title>
+      <link>https://tizispeed.com/knowledge/remote-work-academic-airport.html</link>
+      <guid>https://tizispeed.com/knowledge/remote-work-academic-airport.html</guid>
+      <description>远程办公和学术检索通常需要长连接、文献下载、会议协作和稳定访问，不同任务对延迟、带宽和持续连接的要求不同。</description>
+      <pubDate>Fri, 25 Sep 2026 16:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>直播、TikTok 和 YouTube 机场怎么选？</title>
+      <link>https://tizispeed.com/knowledge/live-tiktok-youtube-airport.html</link>
+      <guid>https://tizispeed.com/knowledge/live-tiktok-youtube-airport.html</guid>
+      <description>直播、TikTok 和 YouTube 同时涉及上传、播放、地区识别和长时间连接，选择节点时需要分别测试上行与下行体验。</description>
+      <pubDate>Fri, 25 Sep 2026 16:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>机场晚高峰变慢怎么办？5个排查点和提速技巧</title>
+      <link>https://tizispeed.com/knowledge/airport-peak-slow-fix.html</link>
+      <guid>https://tizispeed.com/knowledge/airport-peak-slow-fix.html</guid>
+      <description>晚高峰变慢可能来自本地网络、节点负载、线路拥塞、客户端规则或目标网站限速，需要分层排查。</description>
+      <pubDate>Fri, 25 Sep 2026 16:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>原生 IP 和住宅 IP 机场适合谁？</title>
+      <link>https://tizispeed.com/knowledge/native-residential-ip-airport.html</link>
+      <guid>https://tizispeed.com/knowledge/native-residential-ip-airport.html</guid>
+      <description>原生 IP 和住宅 IP 常用于地区一致性、特定平台登录或流媒体场景，但价格、稳定性和可用范围可能不同。</description>
+      <pubDate>Fri, 25 Sep 2026 16:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>韩国、马来西亚、泰国、越南和菲律宾节点怎么选？</title>
+      <link>https://tizispeed.com/knowledge/southeast-asia-node-choice.html</link>
+      <guid>https://tizispeed.com/knowledge/southeast-asia-node-choice.html</guid>
+      <description>东南亚节点适合地区内容、出海业务和部分平台场景，但不同国家的线路、延迟和出口质量差异明显。</description>
+      <pubDate>Fri, 25 Sep 2026 16:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>机场订阅链接是什么？如何在 Clash 和小火箭导入？</title>
+      <link>https://tizispeed.com/knowledge/airport-subscription-import.html</link>
+      <guid>https://tizispeed.com/knowledge/airport-subscription-import.html</guid>
+      <description>机场订阅链接是一种用于获取节点与规则配置的地址，不同客户端的导入入口和更新方式不同。</description>
+      <pubDate>Fri, 25 Sep 2026 16:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>机场月付、季付和年付怎么选？</title>
+      <link>https://tizispeed.com/knowledge/airport-billing-cycle-choice.html</link>
+      <guid>https://tizispeed.com/knowledge/airport-billing-cycle-choice.html</guid>
+      <description>月付、季付和年付对应不同的价格优惠与试错成本，首次使用者和长期稳定用户的选择逻辑不同。</description>
+      <pubDate>Fri, 25 Sep 2026 16:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>机场连上了但打不开网页怎么办？</title>
+      <link>https://tizispeed.com/knowledge/airport-connected-no-web.html</link>
+      <guid>https://tizispeed.com/knowledge/airport-connected-no-web.html</guid>
+      <description>客户端显示连接成功不代表所有流量都正确经过代理，规则、DNS、系统代理和目标网站都可能造成打不开网页。</description>
+      <pubDate>Fri, 25 Sep 2026 16:00:00 GMT</pubDate>
+    </item>
   </channel>
 </rss>
