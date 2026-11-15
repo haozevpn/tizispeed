@@ -4,7 +4,7 @@ const path = require("path");
 const SITE_URL = "https://tizispeed.com";
 const SITE_NAME = "TiziSpeed 机场观察";
 const TODAY = "2026-09-26";
-const SITE_UPDATE_DATE = "2026-11-15";
+const SITE_UPDATE_DATE = "2026-11-16";
 const INDEXNOW_KEY = "9f2c8a7d6e5b4c3a1d0f8e7a6b5c4d3e";
 const SEO_KEYWORDS = "机场推荐,梯子推荐,稳定机场,机场榜单,机场测评,便宜机场,机场排行,科学上网机场,机场节点,机场订阅,好用机场,低价机场,高速机场,IPLC机场,IEPL机场,BGP中转,专线机场,机场价格,机场套餐,机场注册链接,机场官网入口,机场测速,机场试用,机场客户端,Clash机场,Shadowrocket机场,Mihomo教程,机场备用,AI机场,流媒体解锁,香港节点,台湾节点,日本节点,新加坡节点,美国节点,机场速度,机场丢包,机场流量,机场重置日,机场运营,机场公告,机场TUN模式,机场规则模式,机场评测标准";
 
@@ -14,6 +14,7 @@ const airportRows = [
   ["微风网络", "weifengwangluo", "https://vip01.breezenetaff.com/#/?code=JxFsshSn", "¥137.00/年 100GB/月", "IPLC专线"],
   ["光年梯", "guangnianti", "https://gnt001.gntvipaff.cc/#/?code=j1ufpE44", "7.5元 50G/月", "低价备用"],
   ["可信云", "kexinyun", "https://varnexa.kexintttt.xyz/#/register?code=zcjBlIde", "8元 60G/月", "性价比"],
+  ["大佬云", "dalaoyun", "https://haozevpn01.dalaoyunaff.com/#/?code=xA9jCleY", "96元/年 60GB/月", "年付轻量", SITE_UPDATE_DATE],
   ["速界", "sujie", "https://trevona.speed-world.cc/#/register?code=r7IOqoY7", "7.5元 50G/月", "新手友好"],
   ["快狸", "kuaili", "https://varnexa.kuailitttt.homes/#/register?code=G56QwHto", "10元 30GB/月", "轻量备用"],
   ["边缘节点", "bianyuanjiedian", "https://varnexa.bianyuanjiediantttt.sbs/#/register?code=Oy1wZvzJ", "9元 45GB/月", "节点体验"],
@@ -44,10 +45,75 @@ const airportRows = [
   ["飞鸟机场", "feiniao-airport", "https://airportgo.org/go.php", "15元 100G/月", "家用轻量"],
   ["青云梯", "qingyunti", "https://airportgo.org/go.php", "8元 60G/月", "高峰主力"],
   ["花云机场", "huayun-airport", "https://api-flowercloud.com/aff.php?aff=16018", "128元/年 20G/月", "年付备用"],
-  ["云图", "yuntu", "https://super.yuntujc.cc/#/register?code=qPHQtI9a", "待确认", "套餐待核实", SITE_UPDATE_DATE]
+  ["云图", "yuntu", "https://super.yuntujc.cc/#/register?code=qPHQtI9a", "20元 150GB/月", "月付与不限时", "2026-11-15"]
 ];
 
-const updatedAirportSlugs = new Set(["jilianyun", "bianjieyun", "huanyuyun", "pinhaolian", "99bar", "jinyun", "shanshuiyun", "edge-x", "yuntu"]);
+const airportUpdateDates = {
+  jilianyun: "2026-11-15",
+  bianjieyun: "2026-11-15",
+  huanyuyun: "2026-11-15",
+  pinhaolian: "2026-11-15",
+  "99bar": "2026-11-15",
+  jinyun: "2026-11-15",
+  shanshuiyun: "2026-11-15",
+  "edge-x": "2026-11-15",
+  dalaoyun: SITE_UPDATE_DATE,
+  yuntu: SITE_UPDATE_DATE
+};
+
+const airportProfiles = {
+  dalaoyun: {
+    angle: "大佬云提供 96 元年付、每月 60GB 的年付活动包，以及 19.99 元起的月付套餐。截图标注不限设备、全节点 1 倍率；不同套餐分别标注 IPLC 或 IEPL 线路，购买时应按所选套餐核对。",
+    focus: "大佬云年付活动包为 96 元/年、60GB/月，折合约 8 元/月；月付财云·福利版为 19.99 元、100GB/月，另有 25 元 150GB 和 43 元 300GB 档位。",
+    scenario: "轻量用户可比较年付活动包与 100GB 月付套餐；日常 AI、资料检索和影音需求可按实际用量比较 150GB 与 300GB 档位。",
+    watch: "下单前核对年付与月付的付款周期、流量每 30 天重置规则、所选套餐的线路类型和退款条款。不限设备不等于可以公开分享订阅。",
+    description: "大佬云套餐与注册链接：96元年付60GB/月，19.99元100GB/月、25元150GB/月、43元300GB/月；整理截图中的IPLC/IEPL线路、1倍率、设备和重置规则。",
+    sourceNote: "套餐资料根据截至 2026 年 11 月 16 日的两张套餐截图整理。截图中的线路、带宽、解锁及客服描述来自服务商套餐说明，本站未独立实测；实际价格、规则和可用性以官网为准。",
+    details: [
+      ["大佬云年付与月付怎么选", [
+        "年付活动包一次支付 96 元，流量为每月 60GB，折合月费约 8 元。这个价格是按一年摊算的成本，不能按 8 元单独购买一个月，也不是每月获得 96GB。截图说明从购买日起每 30 天刷新流量，全节点 1 倍率，晚高峰不限速。对用量较小、能接受年付周期的用户，可以将它列入比较范围。",
+        "财云·福利版为 19.99 元/月、100GB/月；初云·进阶版为 25 元/月、150GB/月；凌云·基础版为 43 元/月、300GB/月。首次购买更适合先用月付验证自己的网络环境，再决定是否长期续费。截图还显示部分套餐可切换季付、半年付或年付，但未展示对应金额，因此本站只收录画面中可见的价格。"
+      ]],
+      ["线路、节点和设备说明", [
+        "截图中年付活动包与凌云·基础版标注 IPLC 专线，财云·福利版与初云·进阶版标注 IEPL 专线。不能把某一个套餐的线路名称直接套用到所有档位；这些标签也不能替代实际延迟、丢包和晚高峰体验。",
+        "服务商套餐说明标注不限设备、全节点 1 倍率及晚高峰不限速；年付活动包还标注单节点峰值最高 2.5Gbps，这属于套餐宣传上限，并非每个用户都能达到的实测速度。截图列出香港、台湾、日本、新加坡、美国等地区，部分月付套餐另提及韩国及欧洲，具体节点应以订阅内可见列表为准。"
+      ]],
+      ["原生 IP、解锁与服务支持", [
+        "套餐说明提及原生 IP、Netflix、Disney+、ChatGPT 等访问场景，初云和凌云截图还列出手机、电脑、路由器接入以及 7×24 小时真人客服。解锁状态、出口 IP 和客服响应会随服务情况变化，本站没有把截图里的宣传作为已验证的稳定性结论。",
+        "购买后可分别测试常用网站、AI 登录、视频播放和多设备切换，记录白天与晚高峰的差异。如果最便宜的 60GB 档位不足，再比较 100GB、150GB 与 300GB；在确认实际用量前，没有必要仅凭套餐名称升级。"
+      ]],
+      ["大佬云购买前核对事项", [
+        "先确认本次订单支付的是一年还是一个月，再核对每 30 天重置的起点、设备条款、退款条件及售后入口。图片未给出退款细则，也未说明剩余流量能否结转，不能据此默认支持退款或结转。保存订单和公告入口，并妥善保管个人订阅链接。"
+      ]]
+    ]
+  },
+  yuntu: {
+    angle: "云图现已补充岚图、梦图、星图三个按月套餐，以及两个限时上架的不限时流量包。月付从 20 元 150GB 起，同时在线限 5 台设备；一次性流量包从 78 元 100GB 起，定位轻量低频使用。",
+    focus: "云图月付套餐为岚图 20 元 150GB、梦图 40 元 300GB、星图 79 元 600GB；另有 78 元 100GB、159 元 200GB 的一次性不限时流量包。",
+    scenario: "持续使用可按月流量比较三个周期套餐；偶尔查资料或收消息的用户可比较不限时流量包，并先确认其轻量使用限制。",
+    watch: "截图标注同时在线最多 5 台设备、全节点 1 倍率、售出不退款，禁止公开分享订阅链接；不限时包明确劝退大流量、频繁视频、直播和大文件下载用户。",
+    description: "云图套餐价格与购买建议：岚图20元150GB/月、梦图40元300GB/月、星图79元600GB/月；不限时包78元100GB、159元200GB，说明5设备、1倍率与退款及使用限制。",
+    sourceNote: "套餐资料根据截至 2026 年 11 月 16 日的两张云图截图整理。线路、解锁、原生 IP 和工单响应为服务商套餐描述，本站未独立实测；活动库存、有效期及最终条款以官网为准。",
+    details: [
+      ["岚图、梦图和星图月付套餐怎么选", [
+        "岚图为 20 元/月、每月 150GB；梦图为 40 元/月、每月 300GB；星图为 79 元/月、每月 600GB。三档均标注同时在线最多 5 台设备、全节点 1 倍率。选购时应先估算自己的月流量，再核对手机、电脑及其他设备的同时在线数量；600GB 套餐也没有因此增加设备名额。",
+        "截图显示周期套餐还提供季度、半年、一年、两年和三年选项，但没有展示各周期的实际付款金额。本站不据优惠百分比反推长期售价，也不将三年折扣当作月付价格。初次使用可先按月测试，再结合稳定性、流量使用和售后体验决定续费周期。"
+      ]],
+      ["78 元和 159 元不限时流量包", [
+        "限时套餐中的 100GB 不限时流量包为 78 元一次性，200GB 不限时流量包为 159 元一次性。这两个价格不是月费，流量也不是每月重新发放。图片强调一次性流量、超长有效期和轻量低频定位，但未列出明确的有效天数，购买前仍需核对官网对到期、耗尽和服务终止的具体约定。",
+        "套餐说明将用途限定为轻度网页浏览、消息接收等，并明确劝退大流量、频繁看视频、刷直播和下载大文件的用户。不应因为看到“不限时”就把它理解成不限流量或任意用途；有持续视频和下载需求时，应先比较月付套餐及其规则。不限时包同样标注最多 5 台设备同时在线、全节点 1 倍率。"
+      ]],
+      ["线路、解锁和售后信息怎么看", [
+        "月付截图提及专线传输、ChatGPT、Netflix、TikTok 等访问及部分原生 IP 节点。这些为服务商套餐说明；图片未给出具体 IPLC 或 IEPL 类型、节点数量和独立测速记录，因此本站不追加线路规格，也不把“24H 稳定”等宣传语写成实测承诺。",
+        "截图中的售后描述为工单 24 小时内快速回复，它表示服务商给出的响应说明，不等于故障一定在 24 小时内修好。导入订阅后，应测试自己常用地区、AI 登录和日常网页，并确认客户端更新订阅是否正常。"
+      ]],
+      ["设备、退款和订阅分享限制", [
+        "云图截图明确写有虚拟商品一经售出不退款，并禁止恶意公开或分享订阅链接，违规可能立即封禁账号。选择前应先确认这些条件是否符合自己的使用方式；5 台同时在线设备不代表允许公开共享给多人。",
+        "付款前再核对本次购买的是按周期发放流量的套餐，还是一次性流量包；同时检查活动是否仍在售、流量耗尽后的处理方式和账号条款。不要根据截图中的库存充足推断长期有货，也不要把“不限时”理解为服务永久持续。"
+      ]]
+    ]
+  }
+};
 
 const airports = airportRows.map(([name, slug, url, price, tag, publishedAt = TODAY]) => ({
   name,
@@ -56,7 +122,7 @@ const airports = airportRows.map(([name, slug, url, price, tag, publishedAt = TO
   price,
   tag,
   publishedAt,
-  modifiedAt: updatedAirportSlugs.has(slug) ? SITE_UPDATE_DATE : publishedAt,
+  modifiedAt: airportUpdateDates[slug] || publishedAt,
   angle: price === "待确认"
     ? `本站目前仅收录 ${name} 的注册入口，套餐价格和服务详情尚待核实。购买前请自行查看官网规则。`
     : `适合想对比 ${price} 这一档套餐，并希望从公开机场列表里快速筛选 ${tag} 选择的用户。`,
@@ -65,7 +131,8 @@ const airports = airportRows.map(([name, slug, url, price, tag, publishedAt = TO
     : `${name} 当前整理到的最低公开订阅为 ${price}。选择它时不要只看价格，还要把节点地区、倍率规则、晚高峰表现和售后入口一起纳入判断。`,
   scenario: `更适合先用短周期验证常用场景的人，例如网页检索、社交软件、AI 工具、轻量视频、资料下载或备用网络访问。`,
   watch: `下单前重点确认 ${name} 的订阅入口、套餐周期、设备限制、退款说明和公告渠道，避免只凭单次测速决定长期续费。`,
-  trial: `建议购买后连续三天测试香港、日本、新加坡、美国等常用节点，并记录晚间 20 点到 23 点的真实任务体验。`
+  trial: `建议购买后连续三天测试香港、日本、新加坡、美国等常用节点，并记录晚间 20 点到 23 点的真实任务体验。`,
+  ...airportProfiles[slug]
 }));
 
 const airportPlanRows = {
@@ -97,6 +164,12 @@ const airportPlanRows = {
     ["基础版", "12元/月", "120GB/月", "不限设备，适合日常使用。"],
     ["标准版", "20元/月", "240GB/月", "不限设备，适合高频使用。"],
     ["专业版", "30元/月", "400GB/月", "不限设备，适合多设备和大流量。"]
+  ],
+  dalaoyun: [
+    ["年付活动包", "96元/年（折合8元/月）", "60GB/30天", "从购买日起每30天刷新流量；截图标注IPLC、1倍率、不限设备、不限速。"],
+    ["财云·福利版", "19.99元/月", "100GB/月", "截图标注IEPL专线、全节点1倍率、不限设备、晚高峰不限速。"],
+    ["初云·进阶版", "25元/月", "150GB/30天", "每30天重置流量；截图标注IEPL专线、1倍率、不限设备、晚高峰不限速。"],
+    ["凌云·基础版", "43元/月", "300GB/30天", "每30天重置流量；截图标注IPLC专线、1倍率、不限设备、晚高峰不限速。"]
   ],
   sujie: [
     ["50G/月", "7.5元/月", "50GB/月", "不限设备，低价入门。"],
@@ -254,6 +327,13 @@ const airportPlanRows = {
     ["60G/月", "8元/月", "60GB/月", "低价入门，适合轻量备用。"],
     ["150G/月", "15元/月", "150GB/月", "适合日常主力。"],
     ["300G/月", "25元/月", "300GB/月", "适合高峰期高频使用。"]
+  ],
+  yuntu: [
+    ["岚图", "20元/月", "150GB/月", "最多5台设备同时在线；全节点1倍率；截图标注售出不退款。"],
+    ["梦图", "40元/月", "300GB/月", "最多5台设备同时在线；全节点1倍率；截图标注售出不退款。"],
+    ["星图", "79元/月", "600GB/月", "最多5台设备同时在线；全节点1倍率；截图标注售出不退款。"],
+    ["限时套餐·100GB不限时流量", "78元/一次性", "总流量100GB/不限时", "轻量低频用途，非每月重置；最多5台设备、1倍率；具体有效期以官网为准。"],
+    ["限时套餐·200GB不限时流量", "159元/一次性", "总流量200GB/不限时", "不适合频繁视频、直播及大文件下载；最多5台设备、1倍率；售出不退款。"]
   ],
   "huayun-airport": [
     ["年付小包", "128元/年", "20GB/月", "年付备用，适合低频使用。"],
@@ -1330,11 +1410,11 @@ function airportArticleTitle(item) {
     : `${item.name}机场怎么样？${item.price} 套餐、注册链接与购买建议`;
 }
 
-function airportFeedRow(item, index, pinned = false) {
+function airportFeedRow(item, index, pinned = false, ranked = false) {
   return feedRow({
-    title: item.price === "待确认"
+    title: `${ranked ? `<span class="rank-num">${index + 1}</span>` : ""}${item.price === "待确认"
       ? `${item.name} 机场详情：套餐价格待确认与注册链接`
-      : `${item.name} 机场评测：${item.price} 套餐与注册链接`,
+      : `${item.name} 机场评测：${item.price} 套餐与注册链接`}`,
     href: `/posts/${item.slug}.html`,
     excerpt: `${item.focus} ${item.scenario}`,
     tag: item.tag,
@@ -1389,9 +1469,9 @@ function priceTable(item) {
     : [["基础套餐", item.price, "以官网为准", "当前只整理到最低公开套餐，购买前请进入官网确认实时套餐。"]]);
   return `      <section class="price-section">
         <h2>${item.name} 套餐价格表</h2>
-        <p>${pending
+        <p>${item.sourceNote || (pending
           ? "本站尚未核实该服务的套餐名称、价格和流量，表格仅标记待确认状态，不构成价格或服务承诺。购买前请以官网实时页面为准。"
-          : "下面套餐表由本站按公开套餐名称、价格、流量和适用场景重新整理，方便购买前快速比较。机场套餐经常调整，实际价格、流量、倍率、设备数和优惠活动请以服务商官网实时页面为准。"}</p>
+          : "下面套餐表由本站按公开套餐名称、价格、流量和适用场景重新整理，方便购买前快速比较。机场套餐经常调整，实际价格、流量、倍率、设备数和优惠活动请以服务商官网实时页面为准。")}</p>
         <div class="table-wrap price-wrap">
           <table class="price-table">
             <thead><tr><th>套餐</th><th>价格</th><th>流量/周期</th><th>说明</th></tr></thead>
@@ -1574,7 +1654,7 @@ function airportPage(pathName = "/airport/") {
 }
 
 function reviewsPage() {
-  const content = shell("机场测评", { href: "/airport/", label: "机场榜单" }, airports.map((item, index) => airportFeedRow(item, index, index === 0)).join(""));
+  const content = shell("机场测评", { href: "/airport/", label: "机场榜单" }, airports.map((item, index) => airportFeedRow(item, index, false, true)).join(""));
   return layout({
     title: "机场测评：稳定机场与梯子推荐实测整理",
     description: `${airports.length} 篇机场测评文章，覆盖稳定机场选择、梯子推荐、最低套餐、注册链接、适合人群、节点体验和购买建议。`,
@@ -1619,14 +1699,14 @@ function articlePage(item, index) {
   const related = [airports[(index + 1) % airports.length], airports[(index + 5) % airports.length], airports[(index + 9) % airports.length]];
   const pending = item.price === "待确认";
   const title = airportArticleTitle(item);
-  const description = pending
+  const description = item.description || (pending
     ? `${item.name}机场注册入口与购买前检查清单。套餐价格、流量和线路尚待核实，请以官网实时信息为准。`
-    : `${item.name}机场测评与梯子推荐参考，整理最低公开套餐、注册链接、适合人群、稳定机场判断方法、节点观察和下单前注意事项。`;
+    : `${item.name}机场测评与梯子推荐参考，整理最低公开套餐、注册链接、适合人群、稳定机场判断方法、节点观察和下单前注意事项。`);
   const content = `    <article class="article">
       <div class="article-hero">
-        <p class="eyebrow">机场测评 · ${item.publishedAt}</p>
+        <p class="eyebrow">机场测评 · ${item.publishedAt}${item.details && item.modifiedAt !== item.publishedAt ? ` · 更新 ${item.modifiedAt}` : ""}</p>
         <h1>${title}</h1>
-        <p class="lead">${item.angle} 本文基于公开信息整理，不把单次测速当作结论，而是从套餐、节点、适用场景和风险控制四个角度给出判断框架。</p>
+        <p class="lead">${item.angle} ${item.details ? "下文根据套餐截图整理价格、线路说明和使用限制，供购买前核对。" : "本文基于公开信息整理，不把单次测速当作结论，而是从套餐、节点、适用场景和风险控制四个角度给出判断框架。"}</p>
         <div class="hero-actions">
           <a class="button primary" href="${escapeHtml(item.url)}" target="_blank" rel="nofollow sponsored noopener">访问 ${item.name} 注册入口</a>
           <a class="button secondary" href="/airport/">返回机场列表</a>
@@ -1640,7 +1720,10 @@ function articlePage(item, index) {
       </section>
 
 ${priceTable(item)}
-      <section>
+${item.details ? item.details.map(([heading, paragraphs]) => `      <section>
+        <h2>${escapeHtml(heading)}</h2>
+${paragraphs.map((paragraph) => `        <p>${escapeHtml(paragraph)}</p>`).join("\n")}
+      </section>`).join("\n\n") : `      <section>
         <h2>${item.name} 适合谁？</h2>
         <p>${item.focus} 机场订阅的价值并不只在于能不能打开网页，而在于它能否稳定覆盖你的真实任务：例如 AI 工具登录、资料检索、海外文档、社交通讯、视频播放、开发者平台访问，以及手机和电脑之间的切换。${pending ? "目前尚无可供本站对比的已核实套餐信息，先不要据此推断性价比。" : `${item.name} 的公开套餐信息给了一个初步判断入口，但最终仍要用自己的网络环境验证。`}</p>
         <p>${item.scenario} 如果你的需求只是偶尔查资料，低流量或短周期套餐通常更稳妥；如果你每天都使用 YouTube、Telegram、ChatGPT、Claude、Google、GitHub 或流媒体服务，就要把晚高峰稳定性、节点地区和倍率规则放到价格前面。第一次购买不建议直接多年付，先月付或短周期测试更容易止损。</p>
@@ -1668,7 +1751,7 @@ ${priceTable(item)}
         <h2>${item.name} 下单清单</h2>
         <p>下单前可以按五步走：第一，${pending ? "先核实官网当前套餐价格和流量" : `确认最低套餐是否仍是 ${item.price}`}；第二，确认常用客户端是否有一键导入教程；第三，查看香港、日本、新加坡、美国节点是否齐全；第四，问清楚倍率、设备数、退款和流量重置规则；第五，只买一个短周期并记录三天以上体验。这个流程不复杂，但能过滤掉大部分只靠宣传词堆出来的选择。</p>
         <p>如果 ${item.name} 的测试结果符合你的主场景，再考虑把它放进主力列表；如果只是偶尔可用但不够稳，可以把它当备用。总结起来，机场选择最怕一步到位的冲动，最稳的顺序是先明确需求，再短测节点，最后看价格。对普通用户来说，稳定、清楚、可联系，往往比单纯便宜更重要。</p>
-      </section>
+      </section>`}
 
       <aside class="notice"><strong>注册链接：</strong><a href="${escapeHtml(item.url)}" target="_blank" rel="nofollow sponsored noopener">${item.name} 官网入口</a>。如入口跳转或套餐变动，请以服务商实时页面为准。</aside>
       <section>
