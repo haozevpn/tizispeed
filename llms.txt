@@ -60,6 +60,7 @@ TiziSpeed 机场观察 是一个中文机场推荐和机场测评静态博客，
 - 飞鸟机场: https://tizispeed.com/posts/feiniao-airport.html
 - 青云梯: https://tizispeed.com/posts/qingyunti.html
 - 花云机场: https://tizispeed.com/posts/huayun-airport.html
+- 云图: https://tizispeed.com/posts/yuntu.html
 
 ## 科普知识
 

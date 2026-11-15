@@ -4,12 +4,13 @@ const path = require("path");
 const SITE_URL = "https://tizispeed.com";
 const SITE_NAME = "TiziSpeed 机场观察";
 const TODAY = "2026-09-26";
+const SITE_UPDATE_DATE = "2026-11-15";
 const INDEXNOW_KEY = "9f2c8a7d6e5b4c3a1d0f8e7a6b5c4d3e";
 const SEO_KEYWORDS = "机场推荐,梯子推荐,稳定机场,机场榜单,机场测评,便宜机场,机场排行,科学上网机场,机场节点,机场订阅,好用机场,低价机场,高速机场,IPLC机场,IEPL机场,BGP中转,专线机场,机场价格,机场套餐,机场注册链接,机场官网入口,机场测速,机场试用,机场客户端,Clash机场,Shadowrocket机场,Mihomo教程,机场备用,AI机场,流媒体解锁,香港节点,台湾节点,日本节点,新加坡节点,美国节点,机场速度,机场丢包,机场流量,机场重置日,机场运营,机场公告,机场TUN模式,机场规则模式,机场评测标准";
 
 const airportRows = [
   ["飞猫云", "feimaoyun", "https://flycat.flycatvipaff.cc/#/?code=1arEKHqh", "¥84.00/年（学生版）", "年付低价"],
-  ["极连云", "jilianyun", "https://haozevpn.jlyvipaff.com/#/?code=KUKfOY13", "8元 60G/月", "入门首选"],
+  ["极连云", "jilianyun", "https://haozevpn.jlyvipaff.com/#/?code=6aTAi9bW", "8元 60G/月", "入门首选"],
   ["微风网络", "weifengwangluo", "https://vip01.breezenetaff.com/#/?code=JxFsshSn", "¥137.00/年 100GB/月", "IPLC专线"],
   ["光年梯", "guangnianti", "https://gnt001.gntvipaff.cc/#/?code=j1ufpE44", "7.5元 50G/月", "低价备用"],
   ["可信云", "kexinyun", "https://varnexa.kexintttt.xyz/#/register?code=zcjBlIde", "8元 60G/月", "性价比"],
@@ -18,20 +19,20 @@ const airportRows = [
   ["边缘节点", "bianyuanjiedian", "https://varnexa.bianyuanjiediantttt.sbs/#/register?code=Oy1wZvzJ", "9元 45GB/月", "节点体验"],
   ["光速云", "guangshuyun", "https://kjlq01.gsyvipaff.cc/#/?code=b1OTkTeL", "8.25元 59G/月", "低价日用"],
   ["影子", "yingzi", "https://www.yingzi01.com/register?code=X7XPN1cS", "18.80元 150GB/月", "中等流量"],
-  ["边界云机场", "bianjieyun", "https://www.lvpn.cc/r/6UQDZT", "12.33元 50GB/月", "工具订阅"],
+  ["边界云机场", "bianjieyun", "https://www.bianjiecloud.com/r/6UQDZT", "12.33元 50GB/月", "工具订阅"],
   ["星岛梦", "xingdaomeng", "https://wuyou202001.xdmvipaff.cc/#/?code=olWCiAhj", "16元 100G/月", "日常主力"],
   ["全球云", "quanqiuyun", "https://haozevpn.gcvipaff.cc/#/?code=WRQJc2v4", "20元 120G/月", "全球节点"],
   ["瞬云机场", "shunyun", "https://ccc.jichang.best/#/register?code=o4I4kToe", "8.25元 59G/月", "轻中度"],
-  ["寰宇云机场", "huanyuyun", "https://vip3.huanyuyunbest.com/#/register?code=K6h5VWw2", "89元/年 60G/月", "长期备用"],
+  ["寰宇云机场", "huanyuyun", "https://hyy.52kok.cn/#/register?code=K6h5VWw2", "89元/年 60G/月", "长期备用"],
   ["Lumina", "lumina", "https://luminak.net/?token=lumina#/register?code=dCgHyjFi", "10.00元 200GB/月", "大流量低价"],
-  ["拼好连", "pinhaolian", "https://sxzofrnamc.runwayhz.com/#/register?code=A63zaSvx", "9.90元 100GB/月", "百G入门"],
-  ["99吧", "99bar", "https://99vpn.bar/#/register?code=Uni7IOJh", "7.5元 66GB/月", "学生党"],
-  ["锦云机场", "jinyun", "https://w2.whengdl.com/#/register?code=BIGc8qrQ", "6元 50GB/月", "超低价"],
+  ["拼好连", "pinhaolian", "https://sxzofrnamc.runwayhz.com/#/landing?code=A63zaSvx", "9.90元 100GB/月", "百G入门"],
+  ["99吧", "99bar", "https://99ba.net/register?code=Uni7IOJh", "7.5元 66GB/月", "学生党"],
+  ["锦云机场", "jinyun", "https://216.236.63.115/#/register?code=BIGc8qrQ", "6元 50GB/月", "超低价"],
   ["极速云机场", "jisuyun", "https://tg.sintotgch.com/#/register?code=RENHYxqv", "8.25元 800G/月", "大流量"],
-  ["山水云", "shanshuiyun", "https://ss2.byvvcsx.com/#/register?code=jkziWeb8", "14.99元 100GB/月", "百G日用"],
+  ["山水云", "shanshuiyun", "https://47.86.34.254:5210/#/register?code=jkziWeb8", "14.99元 100GB/月", "百G日用"],
   ["秒秒云", "miaomiaoyun", "https://dl1.mmy8.com/#/register?code=g3bq7bpK", "14元 128GB/月", "中流量"],
   ["迅达VPN", "xundavpn", "https://sulianproxy.com/register?code=lfITU4zy", "15元 150GB/月", "稳定刚需"],
-  ["Edge-X机场", "edge-x", "https://edge-invite.com/#/register?code=73ienU2h", "16.8元 100GB/月", "轻量主力"],
+  ["Edge-X机场", "edge-x", "https://edge-invite.net/#/register?code=73ienU2h", "16.8元 100GB/月", "轻量主力"],
   ["可达加速器", "keda", "https://1.mkd997.com/#/register?code=JgTY5JiT", "10元 100GB/月", "低价百G"],
   ["奈云", "naiyun", "https://airportgo.org/go.php", "10.6元 168G/月", "新手友好"],
   ["隐云", "yinyun", "https://airportgo.org/go.php", "25元 150G/月", "日常流量"],
@@ -42,17 +43,26 @@ const airportRows = [
   ["龙猫云", "longmaoyun", "https://airportgo.org/go.php", "15元 150G/月", "平衡型"],
   ["飞鸟机场", "feiniao-airport", "https://airportgo.org/go.php", "15元 100G/月", "家用轻量"],
   ["青云梯", "qingyunti", "https://airportgo.org/go.php", "8元 60G/月", "高峰主力"],
-  ["花云机场", "huayun-airport", "https://api-flowercloud.com/aff.php?aff=16018", "128元/年 20G/月", "年付备用"]
+  ["花云机场", "huayun-airport", "https://api-flowercloud.com/aff.php?aff=16018", "128元/年 20G/月", "年付备用"],
+  ["云图", "yuntu", "https://super.yuntujc.cc/#/register?code=qPHQtI9a", "待确认", "套餐待核实", SITE_UPDATE_DATE]
 ];
 
-const airports = airportRows.map(([name, slug, url, price, tag]) => ({
+const updatedAirportSlugs = new Set(["jilianyun", "bianjieyun", "huanyuyun", "pinhaolian", "99bar", "jinyun", "shanshuiyun", "edge-x", "yuntu"]);
+
+const airports = airportRows.map(([name, slug, url, price, tag, publishedAt = TODAY]) => ({
   name,
   slug,
   url,
   price,
   tag,
-  angle: `适合想对比 ${price} 这一档套餐，并希望从公开机场列表里快速筛选 ${tag} 选择的用户。`,
-  focus: `${name} 当前整理到的最低公开订阅为 ${price}。选择它时不要只看价格，还要把节点地区、倍率规则、晚高峰表现和售后入口一起纳入判断。`,
+  publishedAt,
+  modifiedAt: updatedAirportSlugs.has(slug) ? SITE_UPDATE_DATE : publishedAt,
+  angle: price === "待确认"
+    ? `本站目前仅收录 ${name} 的注册入口，套餐价格和服务详情尚待核实。购买前请自行查看官网规则。`
+    : `适合想对比 ${price} 这一档套餐，并希望从公开机场列表里快速筛选 ${tag} 选择的用户。`,
+  focus: price === "待确认"
+    ? `${name} 的套餐价格、流量和线路尚未由本站核实。请以官网实时页面为准，并先确认设备限制、退款说明和售后入口。`
+    : `${name} 当前整理到的最低公开订阅为 ${price}。选择它时不要只看价格，还要把节点地区、倍率规则、晚高峰表现和售后入口一起纳入判断。`,
   scenario: `更适合先用短周期验证常用场景的人，例如网页检索、社交软件、AI 工具、轻量视频、资料下载或备用网络访问。`,
   watch: `下单前重点确认 ${name} 的订阅入口、套餐周期、设备限制、退款说明和公告渠道，避免只凭单次测速决定长期续费。`,
   trial: `建议购买后连续三天测试香港、日本、新加坡、美国等常用节点，并记录晚间 20 点到 23 点的真实任务体验。`
@@ -823,7 +833,7 @@ function commonSchema(title, description, pathName) {
   return `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": graph })}</script>`;
 }
 
-function articleSchema(title, description, pathName) {
+function articleSchema(title, description, pathName, publishedAt = TODAY, modifiedAt = publishedAt) {
   return `<script type="application/ld+json">${JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Article",
@@ -832,8 +842,8 @@ function articleSchema(title, description, pathName) {
     keywords: SEO_KEYWORDS,
     url: `${SITE_URL}${pathName}`,
     image: `${SITE_URL}/assets/favicon.svg`,
-    datePublished: TODAY,
-    dateModified: TODAY,
+    datePublished: publishedAt,
+    dateModified: modifiedAt,
     author: { "@type": "Organization", name: SITE_NAME },
     publisher: {
       "@type": "Organization",
@@ -1314,9 +1324,17 @@ function feedRow({ title, href, excerpt, tag, meta, thumbTitle }, index, pinned 
   </article>`;
 }
 
+function airportArticleTitle(item) {
+  return item.price === "待确认"
+    ? `${item.name}机场怎么样？套餐价格待确认、注册链接与购买建议`
+    : `${item.name}机场怎么样？${item.price} 套餐、注册链接与购买建议`;
+}
+
 function airportFeedRow(item, index, pinned = false) {
   return feedRow({
-    title: `${item.name} 机场评测：${item.price} 套餐与注册链接`,
+    title: item.price === "待确认"
+      ? `${item.name} 机场详情：套餐价格待确认与注册链接`
+      : `${item.name} 机场评测：${item.price} 套餐与注册链接`,
     href: `/posts/${item.slug}.html`,
     excerpt: `${item.focus} ${item.scenario}`,
     tag: item.tag,
@@ -1365,10 +1383,15 @@ function airportTableRows(items) {
 }
 
 function priceTable(item) {
-  const rows = airportPlanRows[item.slug] || [["基础套餐", item.price, "以官网为准", "当前只整理到最低公开套餐，购买前请进入官网确认实时套餐。"]];
+  const pending = item.price === "待确认";
+  const rows = airportPlanRows[item.slug] || (pending
+    ? [["套餐信息", "待确认", "待确认", "本站尚未核实套餐价格、流量和周期；请在注册页查看实时信息。"]]
+    : [["基础套餐", item.price, "以官网为准", "当前只整理到最低公开套餐，购买前请进入官网确认实时套餐。"]]);
   return `      <section class="price-section">
         <h2>${item.name} 套餐价格表</h2>
-        <p>下面套餐表由本站按公开套餐名称、价格、流量和适用场景重新整理，方便购买前快速比较。机场套餐经常调整，实际价格、流量、倍率、设备数和优惠活动请以服务商官网实时页面为准。</p>
+        <p>${pending
+          ? "本站尚未核实该服务的套餐名称、价格和流量，表格仅标记待确认状态，不构成价格或服务承诺。购买前请以官网实时页面为准。"
+          : "下面套餐表由本站按公开套餐名称、价格、流量和适用场景重新整理，方便购买前快速比较。机场套餐经常调整，实际价格、流量、倍率、设备数和优惠活动请以服务商官网实时页面为准。"}</p>
         <div class="table-wrap price-wrap">
           <table class="price-table">
             <thead><tr><th>套餐</th><th>价格</th><th>流量/周期</th><th>说明</th></tr></thead>
@@ -1530,14 +1553,16 @@ ${seoKnowledgeLinks()}`;
 function airportPage(pathName = "/airport/") {
   const cheap = airports.filter((item) => monthlyPrice(item) < 15);
   const mid = airports.filter((item) => monthlyPrice(item) >= 15 && monthlyPrice(item) <= 20);
-  const high = airports.filter((item) => monthlyPrice(item) > 20);
+  const high = airports.filter((item) => item.price !== "待确认" && monthlyPrice(item) > 20);
+  const pending = airports.filter((item) => item.price === "待确认");
   const intro = `<div class="feed-intro">
-    <p>下面按月付价格区间整理目前站内已收录的机场，方便优先按预算快速筛选，再进入后面的机场推荐榜单详解。</p>
+    <p>下面按月付价格区间整理目前站内已收录的机场；套餐待确认的条目单独列出，方便按预算筛选并核对官方信息。</p>
   </div>`;
   const body = intro
     + airportPriceSection("¥15/月 以下（经济机场）", cheap)
     + airportPriceSection("¥15-20/月（主流入门）", mid)
-    + airportPriceSection("¥20/月 以上或年付套餐", high);
+    + airportPriceSection("¥20/月 以上或年付套餐", high)
+    + airportPriceSection("套餐待确认", pending);
   const content = shell("本期推荐机场名单", null, body);
   return layout({
     title: "机场推荐榜单：稳定机场、便宜机场与梯子推荐",
@@ -1592,11 +1617,14 @@ function rankPage() {
 
 function articlePage(item, index) {
   const related = [airports[(index + 1) % airports.length], airports[(index + 5) % airports.length], airports[(index + 9) % airports.length]];
-  const title = `${item.name}机场怎么样？${item.price} 套餐、注册链接与购买建议`;
-  const description = `${item.name}机场测评与梯子推荐参考，整理最低公开套餐、注册链接、适合人群、稳定机场判断方法、节点观察和下单前注意事项。`;
+  const pending = item.price === "待确认";
+  const title = airportArticleTitle(item);
+  const description = pending
+    ? `${item.name}机场注册入口与购买前检查清单。套餐价格、流量和线路尚待核实，请以官网实时信息为准。`
+    : `${item.name}机场测评与梯子推荐参考，整理最低公开套餐、注册链接、适合人群、稳定机场判断方法、节点观察和下单前注意事项。`;
   const content = `    <article class="article">
       <div class="article-hero">
-        <p class="eyebrow">机场测评 · ${TODAY}</p>
+        <p class="eyebrow">机场测评 · ${item.publishedAt}</p>
         <h1>${title}</h1>
         <p class="lead">${item.angle} 本文基于公开信息整理，不把单次测速当作结论，而是从套餐、节点、适用场景和风险控制四个角度给出判断框架。</p>
         <div class="hero-actions">
@@ -1607,20 +1635,20 @@ function articlePage(item, index) {
 
       <section class="quick-card">
         <div><span>机场名称</span><strong>${item.name}</strong></div>
-        <div><span>最低公开套餐</span><strong>${item.price}</strong></div>
+        <div><span>${pending ? "套餐价格" : "最低公开套餐"}</span><strong>${item.price}</strong></div>
         <div><span>定位</span><strong>${item.tag}</strong></div>
       </section>
 
 ${priceTable(item)}
       <section>
         <h2>${item.name} 适合谁？</h2>
-        <p>${item.focus} 机场订阅的价值并不只在于能不能打开网页，而在于它能否稳定覆盖你的真实任务：例如 AI 工具登录、资料检索、海外文档、社交通讯、视频播放、开发者平台访问，以及手机和电脑之间的切换。${item.name} 的公开套餐信息给了一个初步判断入口，但最终仍要用自己的网络环境验证。</p>
+        <p>${item.focus} 机场订阅的价值并不只在于能不能打开网页，而在于它能否稳定覆盖你的真实任务：例如 AI 工具登录、资料检索、海外文档、社交通讯、视频播放、开发者平台访问，以及手机和电脑之间的切换。${pending ? "目前尚无可供本站对比的已核实套餐信息，先不要据此推断性价比。" : `${item.name} 的公开套餐信息给了一个初步判断入口，但最终仍要用自己的网络环境验证。`}</p>
         <p>${item.scenario} 如果你的需求只是偶尔查资料，低流量或短周期套餐通常更稳妥；如果你每天都使用 YouTube、Telegram、ChatGPT、Claude、Google、GitHub 或流媒体服务，就要把晚高峰稳定性、节点地区和倍率规则放到价格前面。第一次购买不建议直接多年付，先月付或短周期测试更容易止损。</p>
       </section>
 
       <section>
         <h2>套餐和性价比怎么看</h2>
-        <p>${item.name} 当前整理到的最低公开套餐是 <strong>${item.price}</strong>。看性价比时，不要只把月费除以流量，还要看热门节点是否有倍率、流量是否按自然月重置、是否限制设备数、是否支持常见客户端，以及服务商是否提供清楚的公告和教程。便宜套餐适合试水和备用，大流量套餐适合高频使用，但两者都需要实际体验支撑。</p>
+        <p>${pending ? `${item.name} 的套餐价格、流量和周期目前<strong>待确认</strong>。注册前请先查看官方套餐页，核实` : `${item.name} 当前整理到的最低公开套餐是 <strong>${item.price}</strong>。看性价比时，不要只把月费除以流量，还要看`}热门节点是否有倍率、流量是否按自然月重置、是否限制设备数、是否支持常见客户端，以及服务商是否提供清楚的公告和教程。便宜套餐适合试水和备用，大流量套餐适合高频使用，但两者都需要实际体验支撑。</p>
         <p>很多新手会被“最低价”吸引，却忽略真实使用成本。比如 100GB 看起来够用，但如果常用节点按 2 倍或 3 倍扣流量，实际可用时间会明显缩短；反过来，1TB 套餐如果晚高峰经常卡顿，也未必比小而稳定的套餐更划算。更实用的做法是把自己的任务列出来，估算每周视频、AI、下载和社交各占多少，再决定是否需要更高档套餐。</p>
       </section>
 
@@ -1638,7 +1666,7 @@ ${priceTable(item)}
 
       <section>
         <h2>${item.name} 下单清单</h2>
-        <p>下单前可以按五步走：第一，确认最低套餐是否仍是 ${item.price}；第二，确认常用客户端是否有一键导入教程；第三，查看香港、日本、新加坡、美国节点是否齐全；第四，问清楚倍率、设备数、退款和流量重置规则；第五，只买一个短周期并记录三天以上体验。这个流程不复杂，但能过滤掉大部分只靠宣传词堆出来的选择。</p>
+        <p>下单前可以按五步走：第一，${pending ? "先核实官网当前套餐价格和流量" : `确认最低套餐是否仍是 ${item.price}`}；第二，确认常用客户端是否有一键导入教程；第三，查看香港、日本、新加坡、美国节点是否齐全；第四，问清楚倍率、设备数、退款和流量重置规则；第五，只买一个短周期并记录三天以上体验。这个流程不复杂，但能过滤掉大部分只靠宣传词堆出来的选择。</p>
         <p>如果 ${item.name} 的测试结果符合你的主场景，再考虑把它放进主力列表；如果只是偶尔可用但不够稳，可以把它当备用。总结起来，机场选择最怕一步到位的冲动，最稳的顺序是先明确需求，再短测节点，最后看价格。对普通用户来说，稳定、清楚、可联系，往往比单纯便宜更重要。</p>
       </section>
 
@@ -1653,7 +1681,7 @@ ${priceTable(item)}
     description,
     pathName: `/posts/${item.slug}.html`,
     content,
-    extraHead: articleSchema(title, description, `/posts/${item.slug}.html`)
+    extraHead: articleSchema(title, description, `/posts/${item.slug}.html`, item.publishedAt, item.modifiedAt)
   });
 }
 
@@ -1805,21 +1833,21 @@ function aboutPage() {
 
 function sitemap() {
   const urls = [
-    ["/", "1.0"],
-    ["/airport/", "0.9"],
-    ["/rank/", "0.9"],
-    ["/reviews/", "0.9"],
+    ["/", "1.0", SITE_UPDATE_DATE],
+    ["/airport/", "0.9", SITE_UPDATE_DATE],
+    ["/rank/", "0.9", SITE_UPDATE_DATE],
+    ["/reviews/", "0.9", SITE_UPDATE_DATE],
     ["/knowledge/", "0.9"],
     ...knowledgeCategories.map((category) => [`/knowledge/${category.slug}/`, "0.85"]),
     ["/about/", "0.6"],
-    ...airports.map((item) => [`/posts/${item.slug}.html`, "0.8"]),
+    ...airports.map((item) => [`/posts/${item.slug}.html`, "0.8", item.modifiedAt]),
     ...knowledgeTopics.map((item) => [`/knowledge/${item.slug}.html`, "0.8"])
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map(([loc, priority]) => `  <url>
+${urls.map(([loc, priority, lastmod = TODAY]) => `  <url>
     <loc>${SITE_URL}${loc}</loc>
-    <lastmod>${TODAY}</lastmod>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>${priority}</priority>
   </url>`).join("\n")}
@@ -1836,7 +1864,8 @@ Sitemap: ${SITE_URL}/sitemap.xml
 }
 
 function rssFeed() {
-  const pubDate = new Date(`${TODAY}T00:00:00+08:00`).toUTCString();
+  const pubDate = new Date(`${SITE_UPDATE_DATE}T00:00:00+08:00`).toUTCString();
+  const originalPubDate = new Date(`${TODAY}T00:00:00+08:00`).toUTCString();
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
@@ -1846,18 +1875,18 @@ function rssFeed() {
     <language>zh-CN</language>
     <lastBuildDate>${pubDate}</lastBuildDate>
 ${airports.map((item) => `    <item>
-      <title>${escapeHtml(`${item.name}机场怎么样？${item.price} 套餐、注册链接与购买建议`)}</title>
+      <title>${escapeHtml(airportArticleTitle(item))}</title>
       <link>${SITE_URL}/posts/${item.slug}.html</link>
       <guid>${SITE_URL}/posts/${item.slug}.html</guid>
       <description>${escapeHtml(item.angle)}</description>
-      <pubDate>${pubDate}</pubDate>
+      <pubDate>${new Date(`${item.publishedAt}T00:00:00+08:00`).toUTCString()}</pubDate>
     </item>`).join("\n")}
 ${knowledgeTopics.map((item) => `    <item>
       <title>${escapeHtml(item.title)}</title>
       <link>${SITE_URL}/knowledge/${item.slug}.html</link>
       <guid>${SITE_URL}/knowledge/${item.slug}.html</guid>
       <description>${escapeHtml(item.intro)}</description>
-      <pubDate>${pubDate}</pubDate>
+      <pubDate>${originalPubDate}</pubDate>
     </item>`).join("\n")}
   </channel>
 </rss>
